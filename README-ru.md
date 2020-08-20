@@ -185,6 +185,13 @@
 
 **Замечание:** Запуск Стрейзанд для настройки существующего сервера может что-нибудь испортить. Возможно, вы перезапишете конфигурационные файлы, поэтому будьте уверены, что вы настраиваете правильный сервер.
 
+Решение проблем
+-------------------
+В случае ошибки "RUNNING HANDLER [openconnect : Restart rsyslog for OpenConnect] ************************************
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "Could not find the requested service rsyslog: host"}"
+Закомментируйте строку 'acct=pam' в /etc/ocserv/ocserv.conf и перезапустите командой sudo systemctl restart ocserv
+Пример: #acct=pam
+
 Будущие возможности
 -------------------
 * Более простая установка.
