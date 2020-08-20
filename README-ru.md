@@ -118,6 +118,10 @@
   * На Debian и Ubuntu (также устанавливает зависимости. необходимые для сборки Ansible и работы некоторых других модулей)
 
         sudo apt-get install python-paramiko python-pip python-pycurl python-dev build-essential
+  При возникновении проблем:
+
+        sudo apt update
+        sudo apt-get install python-pip-whl
   * На Fedora
 
         sudo dnf install python-pip
@@ -127,12 +131,12 @@
         sudo pip install pycurl
 
 * Установите [Ansible](https://www.ansible.com/).
-  * На macOS (с использованием [Homebrew](http://brew.sh/))
-
-        brew install ansible
   * На BSD или Linux (с использованием pip)
 
         sudo pip install ansible markupsafe
+  * На macOS (с использованием [Homebrew](http://brew.sh/))
+
+        brew install ansible
 * Установите необходимые библиотеки Python для вашего облачного хостера. Если вы настраиваете локальный или существующий сервер, вы можете пропустить этот шаг.
   * Amazon EC2
 
