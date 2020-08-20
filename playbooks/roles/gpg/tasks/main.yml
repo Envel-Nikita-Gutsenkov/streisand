@@ -95,4 +95,4 @@
     group: root
     mode: 0755
   # There's no point installing a cronjob in CI
-  when: not streisand_ci
+  when: false
