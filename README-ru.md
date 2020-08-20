@@ -193,6 +193,7 @@
 
 Ключевые разработчики
 ---------------------
+* Envel
 * Jay Carlson (@nopdotcom)
 * Nick Clarke (@nickolasclarke)
 * Joshua Lund (@jlund)
