@@ -118,7 +118,7 @@
   * На Debian и Ubuntu (также устанавливает зависимости. необходимые для сборки Ansible и работы некоторых других модулей)
 
         sudo apt-get install python-paramiko python-pip python-pycurl python-dev build-essential
-  При возникновении проблем:
+    При возникновении проблем:
 
         sudo apt update
         sudo apt-get install python-pip-whl
