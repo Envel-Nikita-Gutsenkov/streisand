@@ -62,14 +62,14 @@ For example:
 
 ```
 streisand_languages:
-  en:
-    file_suffix: ""
-    language_name: "English"
-    tor_locale: "en-US"
   fr:
     file_suffix: "-fr"              # appends to the end of a file name
     language_name: "Русский"       # name of the language in the language itself
     tor_locale: "ru"                # edge case for Tor          
+  en:
+    file_suffix: ""
+    language_name: "English"
+    tor_locale: "en-US"
 ```
 
 Localizing gateway instructions

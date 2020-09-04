@@ -5,8 +5,8 @@
 
 **Linux**
 
-* [{{ tor_linux32_filename_template | regex_replace('locale', item.value.tor_locale)  }}]({{ tor_linux32_href | regex_replace('locale', item.value.tor_locale) }}) ([sig]({{ tor_linux32_sig_href | regex_replace('locale', item.value.tor_locale) }}))
-* [{{ tor_linux64_filename_template | regex_replace('locale', item.value.tor_locale)  }}]({{ tor_linux64_href | regex_replace('locale', item.value.tor_locale) }}) ([sig]({{ tor_linux64_sig_href | regex_replace('locale', item.value.tor_locale) }}))
+* [{{ tor_linux32_filename_template | regex_replace('locale', item.value.tor_locale) }}]({{ tor_linux32_href | regex_replace('locale', item.value.tor_locale) }}) ([sig]({{ tor_linux32_sig_href | regex_replace('locale', item.value.tor_locale) }}))
+* [{{ tor_linux64_filename_template | regex_replace('locale', item.value.tor_locale) }}]({{ tor_linux64_href | regex_replace('locale', item.value.tor_locale) }}) ([sig]({{ tor_linux64_sig_href | regex_replace('locale', item.value.tor_locale) }}))
 
 **macOS**
 
@@ -14,4 +14,4 @@
 
 **Windows**
 
-* [{{ tor_windows_filename_template | regex_replace('locale', item.value.tor_locale) }}]({{ tor_windows_href | regex_replace('locale', item.value.tor_locale) }}) ([sig]({{ tor_windows_sig_href | regex_replace('locale', item.value.tor_locale) }}))
+* [{{ tor_windows_filename_template |  regex_replace('locale', item.value.tor_locale) }}]({{ tor_windows_href | regex_replace('locale', item.value.tor_locale) }}) ([sig]({{ tor_windows_sig_href | regex_replace('locale', item.value.tor_locale) }}))

@@ -21,3 +21,7 @@ sshuttle_filename: "sshuttle-{{ sshuttle_version }}.tar.gz"
 sshuttle_href: "{{ ssh_mirror_href_base }}/{{ sshuttle_filename }}"
 sshuttle_url: "https://codeload.github.com/sshuttle/sshuttle/tar.gz/v{{ sshuttle_version }}"
 sshuttle_checksum: "sha256:0742e3e670c8df629ae702a32cfad96c7c4e8f7ab8f66c26d94c55d42b01e4b4"
+# spt Android
+spt_filename = "SPT_org.ayal.SPT.apk"
+spt_href: "{{ ssh_mirror_href_base }}/{{ spt_filename }}"
+sshuttle_url: "https://doc-00-6o-docs.googleusercontent.com/docs/securesc/tdpg3uferkfubisq0p9s65eem2tvhn7v/a9b8l5htjpkeo5nq0i4p4128uso6b0n1/1599238875000/09304787997849316448/17960404982774851747Z/1_6hBkjK_FG8C73NG5Iig1aeca-gtHYKy?e=download&nonce=2f4uuobmm4t74&user=17960404982774851747Z&hash=hhh2njatoi4rdsm30jsl1b370p8va611"

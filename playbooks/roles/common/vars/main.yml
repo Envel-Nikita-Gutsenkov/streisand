@@ -60,15 +60,15 @@ streisand_iptables_wait: 120
 
 # Internationalization
 streisand_languages:
-  en:
-    file_suffix: ""
-    language_name: "English"
-    tor_locale: "en-US"
   fr:
     file_suffix: "-fr"
     language_name: "Русский"
     tor_locale: "ru"
-
+  en:
+    file_suffix: ""
+    language_name: "English"
+    tor_locale: "en-US"
+    
 streisand_shuf: "shuf --random-source=/dev/urandom"
 
 # NOTE(@cpu): using the "folded block scalar" YAML syntax in the
