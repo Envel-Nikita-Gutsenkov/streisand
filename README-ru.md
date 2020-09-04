@@ -9,7 +9,7 @@
 [![Build Status](https://github.com/StreisandEffect/streisand/workflows/Streisand/badge.svg)](https://github.com/StreisandEffect/streisand/actions)
 [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/espadrine.svg?style=social&label=Follow%20%40StreisandVPN)](https://twitter.com/StreisandVPN)
 
-Стрейзанд
+Стрейзанд Эпик
 =========
 
 **Заставьте цензуру замолчать. Автоматизируйте [эффект Стрейзанд](https://ru.wikipedia.org/wiki/Эффект_Стрейзанд).**
@@ -196,7 +196,7 @@ fatal: [localhost]: FAILED! => {"changed": false, "msg": "Could not find the req
 -------------------
 * Более простая установка.
 
-Если у вас есть идея, что ещё может делать Стрейзанд или вы нашли баг в документации или коде, пожалуйста, оставьте сообщение в [Issue Tracker](https://github.com/StreisandEffect/streisand/issues).
+Если у вас есть идея, что ещё может делать Стрейзанд или вы нашли баг в документации или коде, пожалуйста, оставьте сообщение в [Issue Tracker](https://github.com/Envel-Nikita-Gutsenkov/streisand/issues).
 
 Ключевые разработчики
 ---------------------

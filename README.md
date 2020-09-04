@@ -1,7 +1,7 @@
 # Streisand
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/jlund/streisand/master/logo.jpg" alt="Automate the effect"/> 
+<img src="https://raw.githubusercontent.com/jlund/streisand/master/logo.jpg" alt="Automate the effect"/>
 </p>
 
 - - -
@@ -11,7 +11,7 @@
 [![Build Status](https://github.com/StreisandEffect/streisand/workflows/Streisand/badge.svg)](https://github.com/StreisandEffect/streisand/actions)
 [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/espadrine.svg?style=social&label=Follow%20%40StreisandVPN)](https://twitter.com/StreisandVPN)
 
-Streisand
+Streisand EPIC
 =========
 
 **Silence censorship. Automate the [effect](https://en.wikipedia.org/wiki/Streisand_effect).**
@@ -39,14 +39,14 @@ Some Streisand services include add-ons for further censorship and throttling re
     * This protocol is widely used by multi-national corporations, and might not be blocked.
 * [OpenVPN](https://openvpn.net/index.php/open-source.html)
     * [Stunnel](https://www.stunnel.org/index.html) add-on available.
-* [Shadowsocks](https://shadowsocks.org/en/index.html), 
+* [Shadowsocks](https://shadowsocks.org/en/index.html),
     * The [V2ray-plugin](https://github.com/shadowsocks/v2ray-plugin) is installed to provide robust traffic evasion on hostile networks (especially those implementing quality of service (QOS) throttling).
 * A private [Tor](https://www.torproject.org/) bridge relay
     * [Obfsproxy](https://www.torproject.org/projects/obfsproxy.html.en) with obfs4 available as an add-on.
 * [WireGuard](https://www.wireguard.com/), a modern high-performance protocol.
 
 See also:
-* A [more technical list of features](Features.md) 
+* A [more technical list of features](Features.md)
 * A [more technical list of services](Services.md)
 
 <a id="cloud-providers"></a>
@@ -64,7 +64,7 @@ We recommend using one of the above providers. If you are an expert and can set 
 
 ## Installation
 
-You need command-line access to a Unix system. You can use Linux, BSD, or macOS; on Windows 10, the Windows Subsystem for Linux (WSL) counts as Linux. 
+You need command-line access to a Unix system. You can use Linux, BSD, or macOS; on Windows 10, the Windows Subsystem for Linux (WSL) counts as Linux.
 
 Once you're ready, see the [full installation instructions](Installation.md).
 
@@ -78,7 +78,7 @@ Aside from a good deal of cleanup, we could really use:
 
 We're looking for help with both.
 
-If there is something that you think Streisand should do, or if you find a bug in its documentation or execution, please file a report on the [Issue Tracker](https://github.com/StreisandEffect/streisand/issues).
+If there is something that you think Streisand should do, or if you find a bug in its documentation or execution, please file a report on the [Issue Tracker](https://github.com/Envel-Nikita-Gutsenkov/streisand/issues).
 
 Core Contributors
 ----------------
