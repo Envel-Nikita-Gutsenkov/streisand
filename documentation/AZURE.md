@@ -2,7 +2,7 @@ Azure credential and setup
 ==========================
 
 - - -
-[English](AZURE.md), [Français](AZURE-fr.md)
+[English](AZURE.md), [Русский](AZURE-fr.md)
 - - -
 
 Setup

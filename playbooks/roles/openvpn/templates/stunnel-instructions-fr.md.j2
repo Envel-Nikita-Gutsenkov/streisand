@@ -1,17 +1,17 @@
 {% include "languages.md.j2" %}
 
-OpenVPN (enveloppé dans stunnel)
---------------------------------
+OpenVPN (wrapped in stunnel)
+----------------------------
 
-Ces instructions ne doivent être utilisées que si les connexions OpenVPN sont bloquées activement dans votre pays ou par votre FAI. La performance sera meilleure si vous pouvez vous connecter directement, mais certains pays (notamment la Chine et l'Iran) emploient 'Deep Packet Inspection' pour détecter et affronter les connexions OpenVPN. Certaines entreprises font de même. Si vous ne rentrez pas dans cette catégorie, reportez-vous à la norme [instructions OpenVPN](/openvpn/index-fr.html) à la place.
+These instructions should only be used if OpenVPN connections are being actively blocked in your country or by your ISP. Performance will be better if you are able to connect directly, but certain countries (notably China and Iran) employ Deep Packet Inspection to detect and thwart OpenVPN connections. Some companies do the same. If you do not fall into this category, please refer to the standard [OpenVPN instructions](/openvpn/) instead.
 
-Suite à ces étapes, vous enveloppez votre trafic OpenVPN dans un tunnel crypté, de sorte qu'il ressemblera comme du trafic SSL standard soit dirigé vers un port où ce type de trafic serait attendu. Cela empêchera le 'DPI' d'identifier la nature veritable de vos paquets, ce qui vous permetera d'utiliser OpenVPN librement.
+Following these steps will wrap your OpenVPN traffic in an encrypted tunnel so it looks like standard SSL traffic being directed to a port where this type of traffic would be expected. This prevents DPI from identifying the true nature of the packets, thereby allowing you to freely use OpenVPN.
 
-#### Une note sur les fichiers clients ####
-Pour des raisons de sécurité, les clients OpenVPN ont généralement leurs propres certificats et clés privées. Le serveur auquel vous vous connectez a été configuré pour permettre aux clients de partager le même certificat et la même clé privée, mais vous pouvez éventuellement donner à votre téléphone et votre ordinateur portable des clés différentes, par exemple.
+#### A note on client files ####
+For security reasons, OpenVPN clients typically have their own unique certificate and private key. The server you will be connecting to has been configured to allow clients to share the same certificate and private key, but you may still wish to give your phone and laptop different keys, for example.
 
 ---
-* Plateformes
+* Platforms
   * [Windows](#windows)
   * [macOS](#macos)
   * [Linux](#linux)
@@ -20,153 +20,149 @@ Pour des raisons de sécurité, les clients OpenVPN ont généralement leurs pro
 
 <a name="windows"></a>
 ### Windows ###
-#### Installation Stunnel ####
-1. Téléchargez et exécutez [l'installateur stunnel](/mirror/index-fr.html#stunnel).
-1. Téléchargez le fichier `stunnel.conf` qui a été personnalisé pour fonctionner avec ce serveur:
+#### Stunnel Setup ####
+1. Download and run the [stunnel installer](/mirror/#stunnel).
+1. Download the `stunnel.conf` file that has been customized to work with this server:
    * [stunnel.conf](/openvpn/stunnel.conf)
-1. Ouvrez le répertoire où vous avez installé stunnel. Pour la plupart des utilisateurs, cela sera dans *C:\Program Files\stunnel* ou *C:\Program Files (x86)\stunnel*.
-1. Faites glisser et déposez le fichier `stunnel.conf` téléchargé dans ce répertoire.
-1. Double-cliquez sur *stunnel.exe* dans le répertoire d'installation pour lancer le service.
+1. Open the directory where you installed stunnel. For most users, this will either be in *C:\Program Files\stunnel* or *C:\Program Files (x86)\stunnel*.
+1. Drag and drop the downloaded `stunnel.conf` file into this directory.
+1. Double click *stunnel.exe* in the installation directory to start the service.
 
-Maintenant, vous êtes prêt à installer OpenVPN et à le configurer pour acheminer son trafic via Stunnel. Un profil .ovpn personnalisé préconfiguré pour fonctionner à côté du fichier `stunnel.conf` rendra cela facile.
+Now you are ready to install OpenVPN and configure it to route its traffic through stunnel. A custom .ovpn profile that is preconfigured to work alongside the `stunnel.conf` file will make this easy.
 
-#### Installation OpenVPN ####
-1. Téléchargez et exécutez [l'installateur Windows](/mirror/index-fr.html#openvpn) OpenVPN.
-1. Cliquez sur *Suivant* et acceptez le contrat de licence en sélectionnant *J'accepte*.
-1. Cliquez *Suivant* sur l'écran *Choose Components* (Choisir les composants). Laissez toutes les options par défaut cochée.
-1. Notez le dossier de destination. C'est là que vous placerez le profil de configuration client `{{ openvpn_direct_profile_filename }}` après l'installation. Cliquez sur *Install* (Installer).
-1. Un avis de sécurité Windows apparaîtra et demande *Voulez-vous installer ce logiciel de périphérique?*. Cliquer *Installer*.
-1. Cliquez *Next* sur l'écran *Installation Complete* (installation complète).
-1. Décochez *Show Readme* puis cliquez *Finish* (finir).
-1. Cliquez-droit sur l'icône OpenVPN GUI et choisissez *Propriétés*.
-1. Allez à l'onglet *Compatibilité* et cliquez sur la coche *Exécuter ce programme en tant qu'administrateur* dans la section *Niveau du privilège*.
-1. Double-cliquez sur l'icône OpenVPN GUI situé sur votre bureau afin de lancer l'application.
-1. Téléchargez l'un de ces profils OpenVPN unifiés:
+#### OpenVPN Setup ####
+1. Download and run the OpenVPN [Windows Installer](/mirror/#openvpn).
+1. Click *Next* and accept the license agreement by clicking *I Agree*.
+1. Click *Next* on the *Choose Components* screen. Leave all of the default options checked.
+1. Make note of the Destination Folder. This is where you will place the `{{ openvpn_stunnel_profile_filename }}` client configuration profile after installation. Click *Install*.
+1. A Windows Security notice will appear and ask *Would you like to install this device software?*. Click *Install*.
+1. Click *Next* on the *Installation Complete* screen.
+1. Uncheck *Show Readme* and click *Finish*.
+1. Right-click on the OpenVPN GUI desktop icon and choose *Properties*.
+1. Go to the *Compatibility* tab and click the *Run this program as an administrator* checkbox in the *Privilege Level* section.
+1. Double-click the OpenVPN GUI desktop icon to launch the application.
+1. Download one of these unified OpenVPN profiles:
 {% for client in vpn_client_names.results %}
    * [{{ client.stdout }}](/openvpn/{{ client.stdout }}/{{ openvpn_stunnel_profile_filename }})
 {% endfor %}
-1. Ouvrez le directoire *config* situé dans le dossier de destination. Pour la plupart des utilisateurs, ça sera *C:\Programmes\OpenVPN\config* ou *C:\Program Files (x86)\OpenVPN\config*. Vous verrez un seul fichier README dans ce répertoire.
-1. Faites glisser et déposez le `{{ openvpn_stunnel_profile_filename }}` téléchargé a cette location juste à côté du fichier README.
-1. Faites un clic droit sur l'icône OpenVPN dans la barre des tâches et choisissez *Connecter*.
-1. Vous verrez des journaux se déplacent à mesure que la connexion est établie, suivie d'une notification de la barre des tâches indiquant votre adresse IP attribuée.
-1. Succès ! Vous pouvez vérifier que votre trafic est correctement routé par [recherche de votre adresse IP sur DuckDuckGo]({{ streisand_my_ip_url }}). Il devrait dire *Votre adresse IP publique est {{streisand_ipv4_address}}*.
+1. Open the *config* directory that is located in the Destination Folder. For most users, this will either be in *C:\Program Files\OpenVPN\config* or *C:\Program Files (x86)\OpenVPN\config*. You will see a single README file in this directory.
+1. Drag and drop the downloaded `{{ openvpn_stunnel_profile_filename }}` file to this location alongside the README.
+1. Right-click on the OpenVPN icon in your taskbar and choose *Connect*.
+1. You will see a log scroll by as the connection is established, followed by a taskbar notification indicating your assigned IP.
+1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="macos"></a>
 ### macOS ###
-#### Installation Stunnel ####
-1. Installer [Homebrew](https://brew.sh/), si vous ne l'avez pas.
-1. Installer stunnel utilisant Homebrew:
+#### Stunnel Setup ####
+1. Install [Homebrew](http://brew.sh/), if you haven't already.
+1. Install stunnel using Homebrew:
 
    `brew install stunnel`
 
-   * Si l'installation de Homebrew n'est pas une option, vous pouvez également télécharger et compiler le [code source stunnel](/mirror/index-fr.html#stunnel).
-1. Téléchargez le fichier `stunnel.conf` qui a été personnalisé pour fonctionner avec ce serveur:
+   * If installing Homebrew is not an option, you can also download and compile the [stunnel source code](/mirror/#stunnel).
+1. Download the `stunnel.conf` file that has been customized to work with this server:
    * [stunnel.conf](/openvpn/stunnel.conf)
-1. Remplacez le fichier défaut stunnel.conf avec la version personnalisée. Assurez-vous de mettre à jour l'emplacement de la source si vous avez téléchargé le fichier dans un répertoire différent.
+1. Replace the default stunnel.conf file with the customized version. Be sure to update the source location if you downloaded the file to a different directory.
 
    `cp ~/Downloads/stunnel.conf /usr/local/etc/stunnel/`
-1. Lancez stunnel:
+1. Start stunnel:
 
    `stunnel`
 
-Maintenant, vous êtes prêt à installer OpenVPN et à le configurer pour acheminer son trafic via Stunnel. Un profil .ovpn personnalisé préconfiguré pour fonctionner à côté du fichier `stunnel.conf` rendra cela facile.
+Now you are ready to install OpenVPN and configure it to route its traffic through stunnel. A custom .ovpn profile that is preconfigured to work alongside the `stunnel.conf` file will make this easy.
 
-#### Installation OpenVPN ####
-1. Téléchargez et lancez [Tunnelblick](/mirror/index-fr.html#openvpn).
-1. Saisissez votre mot de passe pour permettre le processus d'installation de finir, en suite cliquez *OK*.
-1. Cliquez *Lancer* une fois l'installation est terminée.
-1. Cliquez *J'ai des fichiers de configuration*.
-1. Téléchargez l'un des profils unifiés d'OpenVPN:
+#### OpenVPN Setup ####
+1. Download and open [Tunnelblick](/mirror/#openvpn).
+1. Type your password to allow the installation process to complete, and click *OK*.
+1. Click *Launch* after the installation is finished.
+1. Click *I have configuration files*.
+1. Download one of these unified OpenVPN profiles:
 {% for client in vpn_client_names.results %}
    * [{{ client.stdout }}](/openvpn/{{ client.stdout }}/{{ openvpn_stunnel_profile_filename }})
 {% endfor %}
-1. Double-cliquez le profile OpenVPN.
-1. Vous devrez choisir si le profil doit être disponible pour tous les utilisateurs ou seulement pour l'utilisateur actuel. Après avoir effectué votre sélection, vous devrez entrer votre mot de passe.
-1. Recherchez l'icône Tunnelblick dans votre barre de menus. Cliquez dessus et choisissez *Connecter*.
-1. Succès! Vous pouvez vérifier que votre trafic est correctement routé par [recherche de votre adresse IP sur DuckDuckGo]({{ streisand_my_ip_url }}). Il devrait dire *Votre adresse IP publique est {{streisand_ipv4_address}}*.
+1. Double-click the OpenVPN profile.
+1. You will be asked to choose whether the profile should be available for all users or only the current user. After making your selection, you will be asked to enter your password.
+1. Look for the Tunnelblick icon in your menu bar. Click on it, and choose *Connect*.
+1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="linux"></a>
 ### Linux ###
-#### Installation Stunnel ####
-1. Assurez-vous que stunnel est installé:
+#### Stunnel Setup ####
+1. Make sure stunnel is installed:
 
-   `sudo apt-get install stunnel` où `sudo yum install stunnel` où `gestionnaire-de-paquetage-esoterique hipster stunnel`
+   `sudo apt-get install stunnel` OR `sudo yum install stunnel` OR `esoteric-package-manager hipster stunnel`
 
-   * Si l'installation de stunnel via votre gestionnaire de paquets n'est pas une option, vous pouvez également télécharger et compiler le [code source stunnel](/mirror/index-fr.html#stunnel)..
-1. Téléchargez le fichier `stunnel.conf` qui a été personnalisé pour fonctionner avec ce serveur:
+   * If installing stunnel via your package manager is not an option, you can also download and compile the [stunnel source code](/mirror/#stunnel).
+1. Download the `stunnel.conf` file that has been customized to work with this server:
    * [stunnel.conf](/openvpn/stunnel.conf)
-1. Copiez `stunnel.conf` vers la bonne destination. Assurez-vous de mettre à jour l'emplacement de la source si vous avez déplacé le répertoire ailleurs.
+1. Copy `stunnel.conf` to the right destination. Be sure to update the source location if you have moved the directory elsewhere.
 
    `cp ~/Downloads/stunnel.conf /etc/stunnel/`
-1. Les utilisateurs d'Ubuntu doivent ajuster le fichier `/etc/default/stunnel4` et assurez-vous que `ENABLED` est défini sur `1`.
-1. Redémarrez le service Stunnel:
+1. Ubuntu users should adjust the `/etc/default/stunnel4` file and make sure `ENABLED` is set to `1`.
+1. Restart the stunnel service:
 
-   `sudo service stunnel4 restart` ou `sudo service stunnel restart`
+   `sudo service stunnel4 restart` OR `sudo service stunnel restart`
 
-Maintenant, vous êtes prêt à installer OpenVPN et à le configurer pour acheminer son trafic via Stunnel. Un profil .ovpn personnalisé préconfiguré pour fonctionner à côté du fichier `stunnel.conf` rendra cela facile.
+Now you are ready to install OpenVPN and configure it to route its traffic through stunnel. A custom .ovpn profile that is preconfigured to work alongside the `stunnel.conf` file will make this easy.
 
-#### Installation OpenVPN ####
+#### OpenVPN Setup ####
+1. Install OpenVPN:
 
-1. Installer OpenVPN :
+   `sudo apt-get install openvpn` OR `sudo yum install openvpn` OR `esoteric-package-manager hipster openvpn`
 
-   `sudo apt-get install openvpn` où `sudo yum install openvpn` où `gestionnaire-de-paquetage-esoterique hipster openvpn`
-
-   * Si l'installation de OpenVPN via votre gestionnaire de paquetage n'est pas une option, vous pouvez également télécharger et compiler le [code source OpenVPN](/mirror/index-fr.html#openvpn).
-1. Téléchargez l'un de ces profils OpenVPN unifiés :
+   * If installing OpenVPN via your package manager is not an option, you can also download and compile the [OpenVPN source code](/mirror/#openvpn).
+1. Download one of these unified OpenVPN profiles:
 {% for client in vpn_client_names.results %}
    * [{{ client.stdout }}](/openvpn/{{ client.stdout }}/{{ openvpn_stunnel_profile_filename }})
 {% endfor %}
-1. Copiez le fichier `{{ openvpn_direct_profile_filename }}` téléchargé vers l'emplacement de votre choix. */etc/openvpn/* est une bonne option.
-1. Sur certaines distributions, l'option DNS DHCP poussée du serveur OpenVPN sera ignorée. Cela signifie que vos requêtes DNS seront toujours acheminées via les serveurs de votre FAI qui les rend vulnérables à ce que l'on appelle une fuite DNS.
-   * Vous pouvez tester si votre DNS ou non est en train de fuir [içi](https://dnsleaktest.com/).
-   * Vous pouvez vous assurer que les serveurs DNS corrects sont utilisés en ajoutant les lignes suivantes au début du fichier `{{ openvpn_stunnel_profile_filename }}`:
+1. Copy the downloaded `{{ openvpn_stunnel_profile_filename }}` file to the location of your choice. */etc/openvpn/* is a decent option.
+1. On some distributions, the pushed DHCP DNS option from the OpenVPN server will be ignored. This means that your DNS queries will still be routed through your ISP's servers which makes them vulnerable to what is known as a DNS leak.
+   * You can test whether or not your DNS is leaking [here](https://dnsleaktest.com/).
+   * You can ensure that the correct DNS servers are used by adding the following lines to the top of the `{{ openvpn_stunnel_profile_filename }}` file:
      * `script-security 2`
      * `up /etc/openvpn/update-resolv-conf`
      * `down /etc/openvpn/update-resolv-conf`
-
-1. Exécutez OpenVPN et passez le profil .ovpn en option.
+1. Execute OpenVPN, and pass it the .ovpn profile as an option:
 
    `sudo openvpn {{ openvpn_stunnel_profile_filename }}`
+1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
 
-1. Succès ! Vous pouvez vérifier que votre trafic est correctement routé par [recherche de votre adresse IP sur DuckDuckGo]({{ streisand_my_ip_url }}). Il devrait dire *Votre adresse IP publique est {{streisand_ipv4_address}}*.
-
-Le plugin OpenVPN pour NetworkManager semble devenir très confus à la manière dont il doit acheminer le trafic lorsque vous vous connectez à un serveur OpenVPN via une connexion stunnel. L'ajout manuelle d'informations sur l'itinéraire ne semble pas aider. Par conséquent, contrairement aux [instructions non stunnel](/openvpn/index-fr.html), les étapes ci-dessus sont également la méthode de connexion recommandée pour Ubuntu.
+The OpenVPN plugin for NetworkManager appears to become very confused as to how it should route traffic when you connect to an OpenVPN server through a wrapped stunnel connection. Manually adding route information does not seem to help. Therefore, unlike in the [non-stunnel instructions](/openvpn), the steps above are the recommended connection method for Ubuntu as well.
 
 <a name="android"></a>
 ### Android ###
-#### Installation SSLDroid ####
-1. Téléchargez la clé PKCS #12 stunnel
+#### SSLDroid Setup ####
+1. Download the stunnel PKCS #12 formatted key:
    * [stunnel.p12](/openvpn/stunnel.p12)
-1. Copiez le fichier `stunnel.p12` sur votre téléphone.
-1. Installez [SSLDroid](https://play.google.com/store/apps/details?id=hu.blint.ssldroid&hl=fr) et lancez-le.
-1. Appuyez sur le bouton de menu.
-1. Tapez *Add tunnel*.
-1. Tapez *Tunnel name* et saisissez `{{ streisand_server_name }}`.
-1. Tapez *Local port* et saisissez `{{ stunnel_local_port }}`.
-1. Tapez *Remote host* et saisissez `{{ openvpn_server }}`.
-1. Tapez *Remote port* et saisissez `{{ stunnel_remote_port }}`.
-1. Appuyez sur le bouton 'browse' (Parcourir) à côté du fichier *PKCS12* et sélectionnez le fichier `stunnel.p12` que vous avez copié sur votre téléphone durant la première étape. Vous pouvez laisser le champ *PKCS12 pass* vide.
-1. Tapez *Apply*.
+1. Copy the `stunnel.p12` file to your phone.
+1. Install [SSLDroid](https://play.google.com/store/apps/details?id=hu.blint.ssldroid) and launch it.
+1. Tap the menu button.
+1. Tap *Add tunnel*.
+1. Tap *Tunnel name* and enter `{{ streisand_server_name }}`.
+1. Tap *Local port* and enter `{{ stunnel_local_port }}`.
+1. Tap *Remote host* and enter `{{ openvpn_server }}`.
+1. Tap *Remote port* and enter `{{ stunnel_remote_port }}`.
+1. Tap the browse button next to *PKCS12 file* and select the `stunnel.p12` file that you copied to your phone during the first step. You can leave the *PKCS12 pass* field blank.
+1. Tap *Apply*.
 
-Maintenant, vous êtes prêt à installer OpenVPN pour Android et à le configurer pour acheminer son trafic via SSLDroid, qui est connecté au port Stunnel sur le serveur distant. Un profil .ovpn personnalisé qui est préconfiguré pour fonctionner avec SSLDroid rendra cela facile.
+Now you are ready to install OpenVPN for Android and configure it to route its traffic through SSLDroid, which is connected to the stunnel port on the remote server. A custom .ovpn profile that is preconfigured to work alongside SSLDroid will make this easy.
 
-### Installation OpenVPN ###
-1. Installez [OpenVPN pour Android](https://play.google.com/store/apps/details?id=de.blinkt.openvpn&hl=fr).
-1. Téléchargez l'un de ces profils OpenVPN unifiés :
+#### OpenVPN Setup ####
+1. Install [OpenVPN for Android](https://play.google.com/store/apps/details?id=de.blinkt.openvpn).
+1. Download one of these unified OpenVPN profiles:
 {% for client in vpn_client_names.results %}
    * [{{ client.stdout }}](/openvpn/{{ client.stdout }}/{{ openvpn_stunnel_profile_filename }})
 {% endfor %}
-1. Copiez le fichier `{{ openvpn_stunnel_profile_filename }}` sur votre téléphone.
-1. Lancez OpenVPN pour Android.
-1. Appuyez sur l'icône du dossier en bas à droite de l'écran.
-1. Sélectionnez le profil `{{ openvpn_stunnel_profile_filename }}` que vous avez copié sur votre téléphone.
-1. Tapez sur l'icône de sauvegarde (disquette) en bas à droite de l'écran une fois l'importation est terminée.
-1. Tapez le profil.
-1. Acceptez l'avertissement de connexion VPN Android.
-1. Succès ! Vous pouvez vérifier que votre trafic est correctement routé par [recherche de votre adresse IP sur DuckDuckGo]({{ streisand_my_ip_url }}). Il devrait dire *Votre adresse IP publique est {{streisand_ipv4_address}}*.
-
+1. Copy the `{{ openvpn_stunnel_profile_filename }}` file to your phone.
+1. Launch OpenVPN for Android.
+1. Tap the folder icon in the lower-right of the screen.
+1. Select the `{{ openvpn_stunnel_profile_filename }}` profile that you copied to your phone.
+1. Tap the save icon (floppy disk) in the lower-right of the screen after the import is complete.
+1. Tap the profile.
+1. Accept the Android VPN connection warning.
+1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="ios"></a>
 iOS
 ---
-Il n'y a pas d'applications de tunneling compatibles dans l'App Store en ce moment.
+There are no stunnel-compatible tunneling applications available in the App Store at this time.

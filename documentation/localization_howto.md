@@ -5,7 +5,7 @@ One of the most unique aspects of the Streisand project are the
 detailed and customized instructions that it generates for each
 of the VPN services it provides. The instructions are hosted
 on a password protected website allowing them to be easily shared
-among fellow users. This can help in removing ambiguity in how 
+among fellow users. This can help in removing ambiguity in how
 certain services need to be set up and can be easily updated as
 Streisand evolves.
 
@@ -18,7 +18,7 @@ content, as opposed to developer content.
 For example, documentation that can help a user navigate the particularities of certain
 cloud providers (account setup, permissions, etc...) are good candidates for localization.
 
-On the other hand, translation of developer oriented texts, such as Ansible 
+On the other hand, translation of developer oriented texts, such as Ansible
 task names isn't needed at this time.
 
 Language codes
@@ -68,8 +68,8 @@ streisand_languages:
     tor_locale: "en-US"
   fr:
     file_suffix: "-fr"              # appends to the end of a file name
-    language_name: "Français"       # name of the language in the language itself
-    tor_locale: "fr"                # edge case for Tor          
+    language_name: "Русский"       # name of the language in the language itself
+    tor_locale: "ru"                # edge case for Tor          
 ```
 
 Localizing gateway instructions
@@ -117,7 +117,7 @@ Language selection in generated pages
 
 By default, Streisand's common header file contains language selection links
 (generated using the `streisand_languages` dict). For most pages the header with
-language selection links will be included automatically. Certain edge cases 
+language selection links will be included automatically. Certain edge cases
 do exist where a jinja2 code block is explicitly needed with the generated html filename.
 
 These edge case files maybe all reside with the `streisand-gateway` role:
