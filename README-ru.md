@@ -191,6 +191,7 @@
 
 Закомментируйте строку 'acct=pam' в /etc/ocserv/ocserv.conf (пример: #acct=pam) и перезапустите командой 
 
+
        sudo systemctl restart ocserv
 
 2) В случае, если не работает Wireguard, что бывает у некоторых провайдеров нужно до установки streisand поставить pivpn. Это временное решение проблемы.
