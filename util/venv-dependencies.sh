@@ -246,7 +246,7 @@ fi
 # is at shellcheck time.
 
 # shellcheck disable=SC1090
-source "$1/bin/activate"
+source "bin/activate"
 
 # Below this line, we are only installing into the virtualenv at "$1"
 
