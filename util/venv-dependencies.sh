@@ -245,7 +245,7 @@ fi
 # This mucks around with our environment variables. We know where it
 # is at shellcheck time.
 
-# shellcheck source=somefile
+# shellcheck disable=SC1090
 source "$1/bin/activate"
 
 # Below this line, we are only installing into the virtualenv at "$1"
