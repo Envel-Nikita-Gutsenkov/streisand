@@ -189,7 +189,7 @@
        "RUNNING HANDLER [openconnect : Restart rsyslog for OpenConnect] ************************************
        fatal: [localhost]: FAILED! => {"changed": false, "msg": "Could not find the requested service rsyslog: host"}"
 
-Закомментируйте строку 'acct=pam' в /etc/ocserv/ocserv.conf (пример: #acct=pam) и перезапустите командой 
+Закомментируйте строку 'acct=pam' в /etc/ocserv/ocserv.conf (пример: #acct=pam) и перезапустите командой
 
 
        sudo systemctl restart ocserv
