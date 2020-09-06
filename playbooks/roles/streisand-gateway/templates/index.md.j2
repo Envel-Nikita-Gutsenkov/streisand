@@ -8,8 +8,8 @@ Connection Instructions
 
 There are multiple ways to bypass censorship, and Streisand provides several choices and different protocols in the event that any of them are restricted.
 
-{% if streisand_openconnect_enabled %}
-* [OpenConnect / Cisco AnyConnect](/openconnect/)
+{% if streisand_wireguard_enabled %}
+* [WireGuard](/wireguard/)
 {% endif %}
 {% if streisand_openvpn_enabled %}
 * [OpenVPN (direct)](/openvpn/)
@@ -20,14 +20,14 @@ There are multiple ways to bypass censorship, and Streisand provides several cho
 {% if streisand_shadowsocks_enabled %}
 * [Shadowsocks](/shadowsocks/)
 {% endif %}
-{% if streisand_ssh_forward_enabled %}
-* [SSH](/ssh/)
-{% endif %}
 {% if streisand_tor_enabled %}
 * [Tor](/tor/)
 {% endif %}
-{% if streisand_wireguard_enabled %}
-* [WireGuard](/wireguard/)
+{% if streisand_openconnect_enabled %}
+* [OpenConnect / Cisco AnyConnect](/openconnect/)
+{% endif %}
+{% if streisand_ssh_forward_enabled %}
+* [SSH](/ssh/)
 {% endif %}
 
 {% if streisand_mirrored_clients %}

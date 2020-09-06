@@ -3,10 +3,10 @@
 OpenVPN
 -------
 {% if streisand_stunnel_enabled %}
-If OpenVPN connections are being blocked in your country, please refer to the [OpenVPN (stunnel)](/openvpn/stunnel.html) instructions instead which will help you wrap your OpenVPN traffic in an encrypted tunnel so it looks like standard TLS traffic.
+Если соединения OpenVPN блокируются в вашей стране, попробуйте использовать [OpenVPN (stunnel)](/openvpn/stunnel.html) инструкции, которые помогут обернуть ваш OpenVPN-трафик в зашифрованный туннель, чтобы он выглядел как стандартный трафик TLS.
 {% endif %}
-#### A note on client files ####
-For security reasons, this OpenVPN has been configured to only allow one client connection per certificate pair. Attempting to re-use client certificates will cause an existing client session to disconnect.
+#### Примечание о файлах конфигурации ####
+По соображениям безопасности этот OpenVPN был настроен так, чтобы разрешать только одно клиентское соединение на каждый файл. Попытка повторно использовать клиентские сертификаты приведет к отключению существующего клиентского сеанса. Т.е. для каждого устройства используйте разные файлы.
 
 ---
 * Platforms
@@ -21,105 +21,106 @@ For security reasons, this OpenVPN has been configured to only allow one client 
 
 <a name="windows"></a>
 ### Windows ###
-1. Download and run the OpenVPN [Windows Installer](/mirror/#openvpn).
-1. Click *Next* and accept the license agreement by selecting *I Agree*.
-1. Click *Next* on the *Choose Components* screen. Leave all of the default options checked.
-1. Make note of the Destination Folder. This is where you will place the `{{ openvpn_direct_profile_filename }}` client configuration profile after installation. Click *Install*.
-1. A Windows Security notice will appear and ask *Would you like to install this device software?*. Click *Install*.
-1. Click *Next* on the *Installation Complete* screen.
-1. Uncheck *Show Readme* and click *Finish*.
-1. Right-click on the OpenVPN GUI desktop icon and choose *Properties*.
-1. Go to the *Compatibility* tab and click the *Run this program as an administrator* checkbox in the *Privilege Level* section.
-1. Double-click the OpenVPN GUI desktop icon to launch the application.
-1. Download one of these unified OpenVPN profiles:
+1. Загрузите и запустите OpenVPN [Windows установщик](/mirror/#openvpn).
+1. Давайте установим программу. Щелкните *Next* и примите лицензионное соглашение *I Agree* (*Я согласен*).
+1. Щелкните *Next* (*Далее*) на панели *Choose Components* (*Выбор компонентов*). Оставьте все параметры по умолчанию.
+1. Щелкните *Install*.
+1. Может появиться уведомление о безопасности Windows с вопросом *Would you like to install this device software?* (*Хотите ли вы установить программное обеспечение для этого устройства?*). Щелкните *Install* (*Установить*).
+1. Щелкните *Next* (*Далее*) на панели *Installation Complete* (*Установка завершена*).
+1. Снимите флажок *Show Readme* (*Посмотреть Readme*) и щелкните *Finish* (*Завершить*).
+1. Щелкните правой кнопкой мыши значок графического интерфейса OpenVPN на рабочем столе и выберите *Properties* (*Свойства*).
+1. Перейдите на вкладку *Compatibility* (*Совместимость*) и активируйте флажок *Run this program as an administrator* (*Запускать эту программу от имени администратора*) в разделе *Privilege Level* (*Уровень привилегий*).
+1. Установка завершена. Дважды щелкните значок графического интерфейса OpenVPN на рабочем столе, чтобы запустить приложение.
+1. Загрузите один из файлов конфигурации (профилей) OpenVPN:
 {% for client in vpn_client_names.results %}
    * [{{ client.stdout }}](/openvpn/{{ client.stdout }}/{{ openvpn_direct_profile_filename }})
 {% endfor %}
-   * *[Alternate profiles](#sslh-profiles) are available if you are on a network that only allows access to port `443`.*
-   * *[UDP profiles](#udp-profiles) available.*
-   * *[Combined profiles](#combined-profiles) are now available.*
-1. Open the *config* directory that is located in the Destination Folder. For most users, this will either be in *C:\Program Files\OpenVPN\config* or *C:\Program Files (x86)\OpenVPN\config*. You will see a single README file in this directory.
-1. Drag and drop the downloaded `{{ openvpn_direct_profile_filename }}` file to this location alongside the README.
-1. Right-click on the OpenVPN icon in your taskbar and choose *Connect*.
-1. You will see a log scroll by as the connection is established, followed by a taskbar notification indicating your assigned IP.
-1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+   * *[Альтернативные профили](#sslh-profiles) доступны, если вы находитесь в сети, которая разрешает доступ только к порту `443`.*
+   * *[UDP профили](#udp-profiles) доступны.*
+   * *[Комбинированные профили](#combined-profiles) доступны.*
+1. Щелкните правой кнопкой мыши значок OpenVPN на панели задач (снизу справа, значок похож на монитор с замком) и выберите *Import file...* (*Испортировать файл...*).
+1. Выберите загруженный файл `{{ openvpn_direct_profile_filename }}` и нажмите *Open* (*Открыть*).
+1. Появится уведлмление о успешном испорте *File imported successfully.* (*Файл успешно импортирован.*). Нажмите ОК.
+1. Щелкните правой кнопкой мыши значок OpenVPN на панели задач (снизу справа, значок похож на монитор с замком), наведите указатель на IP адрес и выберите *Connect* (*Подключить*).
+1. Появится лог подключения, если подключение удастся, то он пропадет, а на панели задач "монитор с замком" станет зеленым.
+1. Готово! Можно проверить [ваш IP адрес в DuckDuckGo]({{ streisand_my_ip_url }}). Должно быть написано *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="macos"></a>
 ### macOS ###
-1. Download and open [Tunnelblick](/mirror/#openvpn).
-1. Type your password to allow the installation process to complete, and click *OK*.
-1. Click *Launch* after the installation is finished.
-1. Click *I have configuration files*.
-1. Download one of these unified OpenVPN profiles:
+1. Загрузите и откройте [Tunnelblick](/mirror/#openvpn).
+1. Введите свой пароль, чтобы завершить процесс установки, и нажмите *OK*.
+1. Щелкните *Launch* (*Запустить*) после завершения установки.
+1. Щелкните *I have configuration files* (*У меня есть файлы конфигурации*).
+1. Загрузите один из файлов конфигурации (профилей) OpenVPN:
 {% for client in vpn_client_names.results %}
    * [{{ client.stdout }}](/openvpn/{{ client.stdout }}/{{ openvpn_direct_profile_filename }})
 {% endfor %}
-   * *[Alternate profiles](#sslh-profiles) are available if you are on a network that only allows access to port `443`.*
-   * *[UDP profiles](#udp-profiles) available.*
-   * *[Combined profiles](#combined-profiles) are now available.*
-1. Double-click the OpenVPN profile.
-1. You will be asked to choose whether the profile should be available for all users or only the current user. After making your selection, you will be asked to enter your password.
-1. Look for the Tunnelblick icon in your menu bar. Click on it, and choose *Connect*.
-1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+   * *[Альтернативные профили](#sslh-profiles) доступны, если вы находитесь в сети, которая разрешает доступ только к порту `443`.*
+   * *[UDP профили](#udp-profiles) доступны.*
+   * *[Комбинированные профили](#combined-profiles) доступны.*
+1. Дважды щелкните на профиль OpenVPN.
+1. Вам будет предложено выбрать, должен ли профиль быть доступен для всех пользователей или только для текущего пользователя. После выбора будет предложено ввести пароль.
+1. Найдите значок Tunnelblick в строке меню. Щелкните по нему и выберите *Connect* (*Подключиться*).
+1. Готово! Можно проверить [ваш IP адрес в DuckDuckGo]({{ streisand_my_ip_url }}). Должно быть написано *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="linux"></a>
 ### Linux ###
-1. Install OpenVPN:
+1. Установите OpenVPN:
 
    `sudo apt-get install openvpn` OR `sudo yum install openvpn` OR `esoteric-package-manager hipster openvpn`
 
-   * If installing OpenVPN via your package manager is not an option, you can also download and compile the [OpenVPN source code](/mirror/#openvpn).
-1. Download one of these unified OpenVPN profiles:
+   * Если установка OpenVPN через диспетчер пакетов невозможна, вы также можете загрузить и скомпилировать [исходный код OpenVPN](/mirror/#openvpn).
+1. Загрузите один из файлов конфигурации (профилей) OpenVPN:
 {% for client in vpn_client_names.results %}
    * [{{ client.stdout }}](/openvpn/{{ client.stdout }}/{{ openvpn_direct_profile_filename }})
 {% endfor %}
-   * *[Alternate profiles](#sslh-profiles) are available if you are on a network that only allows access to port `443`.*
-   * *[UDP profiles](#udp-profiles) available.*
-   * *[Combined profiles](#combined-profiles) are now available.*
-1. Copy the downloaded `{{ openvpn_direct_profile_filename }}` file to the location of your choice. */etc/openvpn/* is a decent option.
-1. On some distributions, the pushed DHCP DNS option from the OpenVPN server will be ignored. This means that your DNS queries will still be routed through your ISP's servers which makes them vulnerable to what is known as a DNS leak.
-   * You can test whether or not your DNS is leaking [here](https://dnsleaktest.com/).
-   * You can ensure that the correct DNS servers are used by adding the following lines to the top of the `{{ openvpn_direct_profile_filename }}` file:
+   * *[Альтернативные профили](#sslh-profiles) доступны, если вы находитесь в сети, которая разрешает доступ только к порту `443`.*
+   * *[UDP профили](#udp-profiles) доступны.*
+   * *[Комбинированные профили](#combined-profiles) доступны.*
+1. Скопируйте загруженный `{{ openvpn_direct_profile_filename }}` файл в любое место по вашему выбору. */etc/openvpn/* - хороший вариант.
+1. В некоторых дистрибутивах параметр DHCP DNS, переданный с сервера OpenVPN, будет игнорироваться. Это означает, что ваши DNS-запросы по-прежнему будут маршрутизироваться через серверы вашего интернет-провайдера, что делает их уязвимыми для так называемой утечки DNS.
+   * Вы можете проверить есть ли утечка DNS [здесь](https://dnsleaktest.com/).
+   * Вы можете убедиться, что используются правильные DNS-серверы, добавив следующие строки в начало файла `{{ openvpn_direct_profile_filename }}`:
      * `script-security 2`
      * `up /etc/openvpn/update-resolv-conf`
      * `down /etc/openvpn/update-resolv-conf`
-1. Execute OpenVPN, and pass it the .ovpn profile as an option.
+1. Запустите OpenVPN и передайте ему профиль .ovpn в качестве опции.
 
    `sudo openvpn {{ openvpn_direct_profile_filename }}`
-1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+1. Готово! Можно проверить [ваш IP адрес в DuckDuckGo]({{ streisand_my_ip_url }}). Должно быть написано *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="linux-ubuntu-16.04"></a>
 ### Linux (Ubuntu 16.04) ###
-Due to an issue related to Ubuntu 16.04's NetworkManager you cannot use the OpenVPN plugin. Additionally, you cannot use the version of OpenVPN which is in the default repositories. To fix this issue we must download OpenVPN directly from the projects repository.
+Из-за проблемы, связанной с NetworkManager Ubuntu 16.04, вы не можете использовать плагин OpenVPN. Кроме того, вы не можете использовать версию OpenVPN, которая находится в репозиториях по умолчанию. Чтобы решить эту проблему, мы должны загрузить OpenVPN прямо из репозитория проектов.
 
-1. Download one of these unified OpenVPN profiles:
+1. Загрузите один из файлов конфигурации (профилей) OpenVPN:
 {% for client in vpn_client_names.results %}
    * [{{ client.stdout }}](/openvpn/{{ client.stdout }}/{{ openvpn_direct_profile_filename }})
 {% endfor %}
-   * *[Alternate profiles](#sslh-profiles) are available if you are on a network that only allows access to port `443`.*
-   * *[UDP profiles](#udp-profiles) available.*
-   * *[Combined profiles](#combined-profiles) are now available.*
-1. Copy the downloaded `{{ openvpn_direct_profile_filename }}` file to the location of your choice. */etc/openvpn/* is a decent option.
-1. Add the OpenVPN APT repository to your sources by running the following commands:
+   * *[Альтернативные профили](#sslh-profiles) доступны, если вы находитесь в сети, которая разрешает доступ только к порту `443`.*
+   * *[UDP профили](#udp-profiles) доступны.*
+   * *[Комбинированные профили](#combined-profiles) доступны.*
+1. Скопируйте загруженный `{{ openvpn_direct_profile_filename }}` файл в любое место по вашему выбору. */etc/openvpn/* - хороший вариант.
+1. Добавьте репозиторий OpenVPN APT к своим источникам, выполнив следующие команды:
 
    `curl -s https://swupdate.openvpn.net/repos/repo-public.gpg | apt-key add`
    `echo "deb http://build.openvpn.net/debian/openvpn/stable xenial main" > /etc/apt/sources.list.d/openvpn-aptrepo.list`
-1. Update and install OpenVPN with the following command:
+1. Обновите и установите OpenVPN с помощью следующей команды:
 
    `sudo apt update && sudo apt install openvpn`
-1. After the install is complete, ensure you have OpenVPN version 2.4+ with the following command:
+1. После завершения установки убедитесь, что у вас установлен OpenVPN версии 2.4+ с помощью следующей команды:
 
    `openvpn --version`
-1. On some distributions, the pushed DHCP DNS option from the OpenVPN server will be ignored. This means that your DNS queries will still be routed through your ISP's servers which makes them vulnerable to what is known as a DNS leak.
-   * You can test whether or not your DNS is leaking [here](https://dnsleaktest.com/).
-   * You can ensure that the correct DNS servers are used by adding the following lines to the top of the `{{ openvpn_direct_profile_filename }}` file:
+1. В некоторых дистрибутивах параметр pushed DHCP DNS с сервера OpenVPN будет проигнорирован. Это означает, что ваши DNS-запросы по-прежнему будут маршрутизироваться через серверы вашего провайдера, что делает их уязвимыми для так называемой утечки DNS.
+   * Вы можете проверить есть ли утечка DNS [здесь](https://dnsleaktest.com/).
+   * Вы можете убедиться, что используются правильные DNS-серверы, добавив следующие строки в начало файла `{{ openvpn_direct_profile_filename }}`:
      * `script-security 2`
      * `up /etc/openvpn/update-resolv-conf`
      * `down /etc/openvpn/update-resolv-conf`
-1. Execute OpenVPN, and pass it the .ovpn profile as an option.
+1. Запустите OpenVPN и передайте ему профиль .ovpn в качестве опции.
 
    `sudo openvpn {{ openvpn_direct_profile_filename }}`
-1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+1. Готово! Можно проверить [ваш IP адрес в DuckDuckGo]({{ streisand_my_ip_url }}). Должно быть написано *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="linux-ubuntu-17.10"></a>
 ### Linux (Ubuntu 17.10) ###
@@ -165,7 +166,7 @@ It's preferable to configure Ubuntu using the OpenVPN plugin for NetworkManager.
    * Click *OK*.
 1. Click *Add*
 1. Select the VPN in the left-hand menu, and flip the switch to *ON*. You can also enable/disable the VPN by clicking on the WiFi/Network icon in the menu bar, scrolling to *VPN Connections*, and clicking on its name.
-1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+1. Готово! Можно проверить [ваш IP адрес в DuckDuckGo]({{ streisand_my_ip_url }}). Должно быть написано *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="linux-ubuntu-18.04"></a>
 ### Linux (Ubuntu 18.04/18.10) ###
@@ -211,44 +212,45 @@ It's preferable to configure Ubuntu using the OpenVPN plugin for NetworkManager.
    * Click *OK*.
 1. Click *Add*
 1. Find the VPN and flip the switch to *ON*. You can also enable/disable the VPN by clicking on the WiFi/Network icon in the menu bar, scrolling to *VPN Connections*, and clicking on its name.
-1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+1. Готово! Можно проверить [ваш IP адрес в DuckDuckGo]({{ streisand_my_ip_url }}). Должно быть написано *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="android"></a>
 ### Android ###
-1. Install [OpenVPN for Android](https://play.google.com/store/apps/details?id=de.blinkt.openvpn).
-1. Download one of these unified OpenVPN profiles:
+1. Установите [OpenVPN for Android](https://play.google.com/store/apps/details?id=de.blinkt.openvpn).
+1. Загрузите один из файлов конфигурации (профилей) OpenVPN:
 {% for client in vpn_client_names.results %}
    * [{{ client.stdout }}](/openvpn/{{ client.stdout }}/{{ openvpn_direct_profile_filename }})
 {% endfor %}
-   * *[Alternate profiles](#sslh-profiles) are available if you are on a network that only allows access to ports `80` and `443`.*
-   * *[UDP profiles](#udp-profiles) available.*
-   * *[Combined profiles](#combined-profiles) are now available.*
-1. Copy the `{{ openvpn_direct_profile_filename }}` file to your phone.
-1. Launch OpenVPN for Android.
-1. Tap the folder icon in the lower-right of the screen.
-1. Select the `{{ openvpn_direct_profile_filename }}` profile that you copied to your phone.
-1. Tap the save icon (floppy disk) in the lower-right of the screen after the import is complete.
-1. Tap the profile.
-1. Accept the Android VPN connection warning.
-1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+   * *[Альтернативные профили](#sslh-profiles) доступны, если вы находитесь в сети, которая разрешает доступ только к порту `443`.*
+   * *[UDP профили](#udp-profiles) доступны.*
+   * *[Комбинированные профили](#combined-profiles) доступны.*
+1. Скопируйте файл `{{ openvpn_direct_profile_filename }}` на свой телефон или скачайте на телефоне, если это возможно.
+1. Запустите OpenVPN для Android.
+1. Коснитесь значка (папки со стрелкой вниз) в правом верхнем углу экрана.
+1. Выберите профиль `{{ openvpn_direct_profile_filename }}` который вы скопировали на свой телефон или скачали.
+1. После завершения импорта коснитесь значка сохранения (дискеты) в правом нижнем углу экрана.
+1. Нажмите на профиль.
+1. Примите предупреждение о подключении Android VPN.
+1. Готово! Можно проверить [ваш IP адрес в DuckDuckGo]({{ streisand_my_ip_url }}). Должно быть написано *Your public IP address is {{ streisand_ipv4_address }}*.
+1. По желанию в *Settings* (*Настройках*) можно установить *Default VPN* (*Стандартный VPN*), если добавлено несколько профилей и добавить в шторку уведомлений android кнопку для быстрого подключения к VPN по необходимости или для постоянного использования.
 
 <a name="ios"></a>
 ### iOS ###
-1. Download [OpenVPN Connect](https://itunes.apple.com/us/app/openvpn-connect/id590379981) and launch it.
-1. Download one of these unified OpenVPN profiles:
+1. Устанновите [OpenVPN Connect](https://itunes.apple.com/us/app/openvpn-connect/id590379981) and launch it.
+1. Загрузите один из файлов конфигурации (профилей) OpenVPN:
 {% for client in vpn_client_names.results %}
    * [{{ client.stdout }}](/openvpn/{{ client.stdout }}/{{ openvpn_direct_profile_filename }})
 {% endfor %}
-   * *[Alternate profiles](#sslh-profiles) are available if you are on a network that only allows access to ports `80` and `443`.*
-   * *[UDP profiles](#udp-profiles) available.*
-   * *[Combined profiles](#combined-profiles) are now available.*
-1. Open iTunes on your computer and connect your phone.
-1. Select your phone, click on the *Apps* tab, and find OpenVPN under the *File Sharing* section.
-1. Drag and drop the downloaded `{{ openvpn_direct_profile_filename }}` file into the file sharing window.
-1. OpenVPN on your phone will say that *1 new OpenVPN profile is available for import*.
-1. Tap the green *+* button to import the profile.
-1. Tap the slider to connect to the OpenVPN server.
-1. Success! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
+   * *[Альтернативные профили](#sslh-profiles) доступны, если вы находитесь в сети, которая разрешает доступ только к порту `443`.*
+   * *[UDP профили](#udp-profiles) доступны.*
+   * *[Комбинированные профили](#combined-profiles) доступны.*
+1. Откройте iTunes на своем компьютере и подключите телефон.
+1. Выберите свой телефон, перейдите на вкладку *Apps* (*Приложения*), и найдите OpenVPN в разделе *File Sharing* (*Обмен файлами*).
+1. Перетащите загруженный файл `{{ openvpn_direct_profile_filename }}` в окно обмена файлами.
+1. OpenVPN на вашем телефоне сообщит, что *1 new OpenVPN profile is available for import* (*1 новый профиль OpenVPN доступен для импорта*).
+1. Нажмите зеленую + кнопку , чтобы импортировать профиль.
+1. Коснитесь ползунка, чтобы подключиться к серверу OpenVPN.
+1. Готово! Можно проверить [ваш IP адрес в DuckDuckGo]({{ streisand_my_ip_url }}). Должно быть написано *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="sslh-profiles"></a>
 ### Alternate unified profiles for access via port 443 ###

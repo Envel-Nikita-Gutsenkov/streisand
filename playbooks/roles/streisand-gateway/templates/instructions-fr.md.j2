@@ -1,195 +1,185 @@
 {% include "languages.md.j2" %}
 
-Votre passerelle Streisand contient des instructions étape par étape pour les services qu'elle fournit, et des miroirs de tous les logiciels clients nécessaires.
+Your Streisand Gateway contains step-by-step instructions for the services it provides, and mirrors of all necessary client software.
 
 {% if le_ok %}
-Ce document vous montrera comment vous connecter à la passerelle afin de décrire comment configurer vos clients pour se connecter aux services fournis par Streisand.
+This document will show you how to connect to the Gateway to learn how to configure clients to use the Streisand services.
 {% else %}
-Ce document couvre les instructions d'installation du certificat SSL et vous montrera comment vous connecter à la passerelle afin de décrire comment configurer vos clients pour se connecter aux services fournis par Streisand.
+This document covers the SSL Certificate installation instructions and will show you how to connect to the Gateway to learn how to configure clients to use the Streisand services.
 {% endif %}
 
 ---
 {% if not le_ok %}
-* [Installation du certificat SSL](#ssl)
+* [SSL Certificate Installation](#ssl)
   * [Windows](#ssl-windows)
   * [macOS](#ssl-macos)
   * [Android](#ssl-android)
   * [iOS](#ssl-ios)
   * [Chromium](#ssl-chromium)
   * [Firefox](#ssl-firefox)
-  * [Vérification du certificat](#ssl-manual)
+  * [Manual Certificate Verification](#ssl-manual)
 {% endif %}
-* [Connexion à votre passerelle Streisand](#connecting)
+* [Connecting to your Streisand Gateway](#connecting)
   * [SSL](#connecting-ssl)
 {% if streisand_tor_enabled %}
-  * [Service Caché Tor](#connecting-tor)
+  * [Tor Hidden Service](#connecting-tor)
 {% endif %}
 
 
 {% if not le_ok %}
 <a name="ssl"></a>
-Installation du certificat SSL
-------------------------------
-Vous devez installer le certificat SSL de la passerelle afin que votre navigateur puisse vérifier automatiquement l'intégrité de la connexion. Cela empêche quiconque de falsifier votre trafic et également protègera  vos identifiants de connexion. Le certificat a été incorporé directement dans ce fichier HTML, et vous pouvez le télécharger içi:
-<p><a download="{{ streisand_ipv4_address }}.crt" id="download" href="data:application/x-x509-ca-cert;base64,{{ streisand_certificate_data_uri.stdout }}">Télécharger le certificat</a></p>
+SSL Certificate Installation
+----------------------------
+You should install the Gateway's SSL certificate so your browser can automatically verify the integrity of the connection. This prevents anyone from tampering with your traffic and also protects your login credentials. The certificate has been embedded directly into this HTML file, and you can download it here:
+<p><a download="{{ streisand_ipv4_address }}.crt" id="download" href="data:application/x-x509-ca-cert;base64,{{ streisand_certificate_data_uri.stdout }}">Download Certificate</a></p>
 
 
 <a name="ssl-windows"></a>
 ### Windows ###
-Ces instructions fonctionnent pour Chrome et Internet Explorer. Firefox utilise son propre gestionnaire de certificats interne, mais est également [facile à configurer](#ssl-firefox).
+These instructions work for Chrome and Internet Explorer. Firefox uses its own internal Certificate Manager, but it's [easy to configure](#ssl-firefox) too.
 
-1. [Téléchargez le certificat SSL](#download) intégré dans ce document.
-1. Double-cliquez pour ouvrir le certificat téléchargé.
-1. Cliquez sur *Installer le certificat...*
-1. L'Assistant d'importation de certificat démarrera. Cliquez sur *Suivant*.
-1. Sélectionnez *Placer tous les certificats dans le magasin suivant* puis cliquez *Parcourir*.
-1. Sélectionnez *Autorités de certification racine de confiance* puis cliquez *OK*.
-1. Cliquez *Suivant* en suite *Finir*.
-1. Confirmez que vous souhaitez installer le certificat en choisissant *Oui*.
-1. Redémarrez votre navigateur Web.
-1. Vous êtes prêt à vous connecter. Voir [Connexion à votre passerelle Streisand](#connecting-ssl).
+1. [Download the SSL certificate](#download) embedded in this document.
+1. Double-click to open the downloaded certificate.
+1. Click *Install Certificate...*
+1. The Certificate Import Wizard will start. Click *Next*.
+1. Select *Place all certificates in the following store* and click *Browse*.
+1. Select *Trusted Root Certification Authorities* and click *OK*.
+1. Click *Next* and then click *Finish*.
+1. Confirm that you would like to install the certificate by choosing *Yes*.
+1. Close and re-open your browser.
+1. You are ready to connect. See [Connecting to your Streisand Gateway](#connecting-ssl).
 
 
 <a name="ssl-macos"></a>
 ### macOS ###
-Ces instructions fonctionnent pour Chrome et Safari. Firefox utilise son propre gestionnaire de certificats interne, mais est également [facile à configurer](#ssl-firefox).
+These instructions work for Chrome and Safari. Firefox uses its own internal Certificate Manager, but it's [easy to configure](#ssl-firefox) too.
 
-1. Lancez *Trousseaux d'accès*.
-1. [Téléchargez le certificat SSL](#download) intégré dans ce document.
-1. Faites glisser le certificat téléchargé dans la section de session.
-1. Faites un clic-droit et choisissez *Lire les informations*.
-1. Cliquez sur le triangle à guache de *Se fier* pour ouvrir le menu contextuelle.
-1. Choisissez l'option *Toujours approuver*  dans le menu deroulant pour le champ *(SSL) Secure Sockets Layer*.
-1. Fermer la fenêtre
-1. Une fenêtre apparaîtra qui vous demandera votre mot de passe; saissisez-le, puis cliquez sur *Mettre à jour les réglages*
-1. Vous êtes prêt à vous connecter. Voir [Connexion à votre passerelle Streisand](#connecting-ssl).
+1. Go to *Applications > Utilities* and launch *Keychain Access*.
+1. [Download the SSL certificate](#download) embedded in this document.
+1. Drag the downloaded certificate into the login keychain section.
+1. A window will appear asking if you want to trust the certificate. Click *Always Trust*.
+1. Enter your password when you are prompted to do so, and click *Update Settings*.
+1. Right-click on the imported certificate and select *Get Info*.
+1. Click the arrow next to *Trust* and more options will appear.
+1. Choose *Always Trust* next to the *Secure Sockets Layer (SSL)* option.
+1. Close the certificate window and enter your password again.
+1. You are ready to connect. See [Connecting to your Streisand Gateway](#connecting-ssl).
 
 
 <a name="ssl-android"></a>
 ### Android ###
-Ces instructions fonctionnent pour Chrome Firefox pour Android utilise son propre gestionnaire de certificats interne mais ne fournit pas d'interface pour l'importation de certificats. Chrome est donc la manière recommandée de se connecter à la passerelle Streisand.
+These instructions work for Chrome. Firefox for Android uses its own internal Certificate Manager but does not provide an interface for importing certificates yet. Chrome is therefore the recommended way to connect to the Streisand Gateway.
 
-#### Moins sécurisé, mais facile ####
+#### Less secure, but easy ####
 
-1. [Téléchargez le certificat SSL](#download) intégré dans ce document.
-1. Envoyez le certificat téléchargé par courrier électronique à un compte auquel vous pouvez accéder à partir de l'appareil Android.
-1. Ouvrez l'e-mail, puis appuyez sur la pièce jointe.
-1. Une invite apparaîtra, entez `{{ streisand_server_name }}` pour le *Nom du certificat*, et assurez-vous que *VPN et applications* est sélectionné pour la valeur de *Utilisation du certificat*.
-1. Tapez *OK*.
-1. Vous êtes prêt à vous connecter. Voir [Connexion à votre passerelle Streisand](#connecting-ssl).
+1. [Download the SSL certificate](#download) embedded in this document.
+1. Email the downloaded certificate to an account that can be accessed from the Android device.
+1. Open the email and tap the attachment.
+1. A popup will appear. Enter `{{ streisand_server_name }}` for the *Certificate name*, and make sure *VPN and apps* is selected for the *Credential use* value.
+1. Tap *OK*.
+1. You are ready to connect. See [Connecting to your Streisand Gateway](#connecting-ssl).
 
-#### Plus sécurisé ####
-1. Connectez l'appareil Android à votre ordinateur.
-1. [Téléchargez le certificat SSL](#download) intégré dans ce document.
-1. Faites glisser le certificat téléchargé vers la racine du système de fichiers de l'appareil Android.
-1. Lancez l'application *Paramètres*.
-1. Faites défiler jusqu'à la section *Appareil* et tapez sur *Sécurité*.
-1. Faites défiler jusqu'à la section *Stockage des identifiants* et tapez *Installer depuis la carte SD*.
-1. Sélectionnez le certificat que vous avez copié sur votre téléphone.
-1. Entrez `{{ streisand_server_name }}` pour le *Nom du certificat*, et assurez-vous que *VPN et applications* est sélectionné pour la valeur de *Utilisation du certificat*.
-1. Tapez *OK*.
-1. Vous êtes prêt à vous connecter. Voir [Connexion à votre passerelle Streisand](#connecting-ssl).
+#### More secure ####
+1. Connect the Android device to your computer.
+1. [Download the SSL certificate](#download) embedded in this document.
+1. Drag the downloaded certificate to the root of the Android device's filesystem.
+1. Launch the *Settings* application.
+1. Scroll to the *Personal* section and tap *Security*.
+1. Scroll to the *Credential Storage* section and tap *Install from storage*.
+1. Select the certificate that you copied to your phone.
+1. Enter `{{ streisand_server_name }}` for the *Certificate name*, and make sure *VPN and apps* is selected for the *Credential use* value.
+1. Tap *OK*.
+1. You are ready to connect. See [Connecting to your Streisand Gateway](#connecting-ssl).
 
 
 <a name="ssl-ios"></a>
 ### iOS ###
-#### Moins sécurisé, mais facile ####
-1. [Téléchargez le certificat SSL](#download) intégré dans ce document.
-1. Envoyez le certificat téléchargé par courrier électronique à un compte auquel vous pouvez accéder à partir de l'appareil iOS.
-1. Ouvrez l'e-mail avec l'app Mail de iOS, en suite appuyez sur la pièce jointe.
-1. L'écran *Installer le profil* apparaîtra. Vous pouvez afficher les détails du certificat et vous assurer qu'ils correspondent aux informations de la section <a href="#verification">Verification SSL</a> . Tapez *Installer*.
-1. Saisissez votre code NIP.
-1. Tapez *Installer* à nouveau lorsque l'avertissement apparaît.
-1. Tapez *OK*.
-1. Vous êtes prêt à vous connecter. Voir [Connexion à votre passerelle Streisand](#connecting-ssl).
+#### Less secure, but easy ####
+1. [Download the SSL certificate](#download) embedded in this document.
+1. Email the downloaded certificate to an account that can be accessed from the iOS device.
+1. Open the email in the iOS Mail app, and tap the attachment.
+1. The *Install Profile* screen will appear. You can view the certificate details and make sure they match the information from the <a href="#verification">SSL Verification</a> section. Tap *Install*.
+1. Tap *Install* again when the warning appears.
+1. Tap *Done*.
+1. You are ready to connect. See [Connecting to your Streisand Gateway](#connecting-ssl).
 
-<!---
-I am unable to download the app from the App Store since
-it is only available for macOS 10.12, of which I do not have currently installed.
-This section below is a best effort. -@alimakki
--->
-#### Plus sécurisé ####
-1. Connectez le périphérique iOS à votre ordinateur macOS.
-1. Tapez *Se fier* si l'avertissement *Faire confiance à cet ordinateur* apparaît.
-1. Installez l'utilitaire <a href="https://itunes.apple.com/fr/app/apple-configurator-2/id1037126344?mt=12">Apple Configurator 2</a> depuis le Mac App Store.
-1. Lancez l'utilitaire Apple Configurator et acceptez la licence.
-1. Cliquez *Start Preparing Devices*.
-1. Cliquez *Install Profiles...*.
-1. Allumez le téléphone et déverouille-le.
-1. Cliquez *Next*.
-1. Cliquez *New...* and entrez `{{ streisand_server_name }}` dans le champ *Name* dans la section *General*.
-1. Faites défiler jusqu'à la section *Certificates*.
-1. [Téléchargez le certificat SSL](#download) intégré dans ce document.
-1. Cliquez *Configure*, sélectionnez le certificat téléchargé et cliquez sur *Open*.
-1. Cliquez *Save*.
-1. Cocher l'options à côté du profil `{{ streisand_server_name }}` que vous avez crée. Cliquez *Next*.
-1. L'écran *Installer le profile* apparaîtra sur votre appareil iOS. Tapez *Installer*.
-1. Tapez *Installer* à nouveau lorsque l'avertissement apparaît.
-1. Tapez *OK*.
-1. Vous êtes prêt à vous connecter. Voir [Connexion à votre passerelle Streisand](#connecting-ssl).
+#### More secure ####
+1. Connect the iOS device to your macOS computer.
+1. Tap *Trust* if the *Trust This Computer?* popup appears.
+1. Install the <a href="https://itunes.apple.com/us/app/apple-configurator-2/id1037126344?mt=12">Apple Configurator 2</a> utility from the Mac App Store.
+1. Launch the Apple Configurator utility and agree to the license.
+1. Click *Start Preparing Devices*.
+1. Click *Install Profiles...*.
+1. Turn the phone on and unlock it.
+1. Click *Next*.
+1. Click *New...* and enter `{{ streisand_server_name }}` in the *Name* field of the *General* section.
+1. Scroll down to the *Certificates* section.
+1. [Download the SSL certificate](#download) embedded in this document.
+1. Click *Configure*, select the downloaded certificate, and click *Open*.
+1. Click *Save*.
+1. Check the checkbox next to the `{{ streisand_server_name }}` profile you just created. Click *Next*.
+1. The *Install Profile* screen will appear on your iOS device. Tap *Install*.
+1. Tap *Install* again when the warning appears.
+1. Tap *Done*.
+1. You are ready to connect. See [Connecting to your Streisand Gateway](#connecting-ssl).
 
 
-<!--
-A best effort translation here as well.
-A review of the correct words used in context will be needed
---@alimakki
--->
 <a name="ssl-chromium"></a>
 ### Chromium ###
-1. Cliquez sur le bouton Menu et accédez à *Paramètres*.
-1. Faites défiler jusqu'au bas de la fenêtre et cliquez sur *Afficher les paramètres avancés...*
-1. Faites défiler jusqu'au la section HTTPS/SSL et cliquez *Gérer les certificats...*
-1. Accedez a l'ognlet *Autorités*.
-1. [Téléchargez le certificat SSL](#download) intégré dans ce document.
-1. Cliquez *Importer...*, sélectionnez le certificat, en suite cliquez *Ouvrir*.
-1. Une invite apparaîtra. Cochez l'option à côté de *Confiez ce certificat pour identifier les sites Web* et cliquez sur *OK*.
-1. Cliquez *OK*.
-1. Vous êtes prêt à vous connecter. Voir [Connexion à votre passerelle Streisand](#connecting-ssl).
+1. Click the Menu button and go to *Settings*.
+1. Scroll to the bottom of the window and click *Show advanced settings...*
+1. Scroll to the HTTPS/SSL section and click *Manage certificates...*
+1. Go the *Authorities* tab.
+1. [Download the SSL certificate](#download) embedded in this document.
+1. Click *Import...*, select the downloaded certificate, and click *Open*.
+1. A popup will appear. Check the box next to *Trust this certificate for identifying websites* and click *OK*.
+1. Click *Done*.
+1. You are ready to connect. See [Connecting to your Streisand Gateway](#connecting-ssl).
 
 
 <a name="ssl-firefox"></a>
 ### Firefox ###
-1. Lancez Firefox.
-1. Ouvrez le panneau *Options*, et sélectionnez *Préférences*.
-1. Naviguez vers *Vie privée et sécurité*.
-1. Défiler jusqu'à la rubrique *Sécurité > Certificats*
-1. Cliquez sur *Afficher les certificats*.
-1. Une fenêtre apparaîtra. Cliquez sur l'onglet *Autorités*.
-1. [Téléchargez le certificat SSL](#download) intégré dans ce document.
-1. Cliquez *Importer...*, sélectionnez le certificat, en suite cliquez *Ouvrir*.
-1. Une invite apparaîtra. Cochez l'option à côté de *Confiez ce certificat pour identifier les sites Web* et cliquez sur *OK*.
-1. Cliquez *OK* pour fermer le gestionaire des ceritificats, en suite fermer le panneau de *Préférences*.
-1. Vous êtes prêt à vous connecter. Voir [Connexion à votre passerelle Streisand](#connecting-ssl).
+1. Launch Firefox.
+1. Open the *Options* panel, and select *Preferences*.
+1. Go to the *Privacy & Security* tab.
+1. Scroll down to the *Security > Certificates* heading.
+1. Click *View Certificates*.
+1. A window will appear. Click on the *Authorities* tab.
+1. [Download the SSL certificate](#download) embedded in this document.
+1. Click *Import...*, select the downloaded certificate, and click *Open*.
+1. A popup will appear. Check the box next to *Trust this CA to identify websites* and click *OK*.
+1. Click *OK* to close the certificate manager, and then close the *Preferences* panel.
+1. You are ready to connect. See [Connecting to your Streisand Gateway](#connecting-ssl).
 
 
 <a name="ssl-manual"></a>
-### Verification SSL manuelle ###
-*L'option de vérification du certificat manuel est significativement moins sécurisée que l'installation du certificat en utilisant l'une des méthodes ci-dessus. Votre navigateur affichera un message d'avertissement et vous serai plus vulnérable aux [attaques de l'homme du milieu](https://fr.wikipedia.org/wiki/Attaque_de_l%27homme_du_milieu) car les empreintes digitales doivent être vérifiées lors de chaque tentative de connexion. Il devrait être utilisé avec beaucoup de soin, et seulement en dernier recours.*
+### Manual SSL Verification ###
+*The manual certificate verification option is significantly less secure than installing the certificate using one of the methods above. Your browser will display a warning message, and you are more vulnerable to man-in-the-middle attacks because the fingerprints must be verified on every connection attempt. It should be used with great care, and only as a last resort.*
 
-Les détails du certificat doivent correspondre aux informations suivantes:
+The certificate details should match the following information:
 
-##### Numéro de série #####
+##### Serial Number #####
 `{{ ssl_certificate_serial_number.stdout }}`
 
-##### Empreintes #####
+##### Fingerprints #####
 {% for fingerprint in ssl_certificate_fingerprints.results %}
     {{ fingerprint.stdout }}
 {% endfor %}
 
-Si tout vérifie, vous êtes prêt à vous connecter. Voir [Connexion à votre passerelle Streisand](#connecting-ssl).
+If everything checks out, you are ready to connect. See [Connecting to your Streisand Gateway](#connecting-ssl).
 {% endif %}
 
 
 <a name="connecting"></a>
-Connexion à votre passerelle Streisand
---------------------------------------
+Connecting to your Streisand Gateway
+------------------------------------
 
 <a name="connecting-ssl"></a>
 ### SSL ###
 {% if le_ok %}
-[{{ streisand_domain }}](https://{{ streisand_domain }}/index-fr.html)
+[{{ streisand_domain }}](https://{{ streisand_domain }})
 {% else %}
-[{{ streisand_gateway_url }}]({{ streisand_gateway_url }}/index-fr.html)
+[{{ streisand_gateway_url }}]({{ streisand_gateway_url }})
 {% endif %}
 
 username: `{{ streisand_gateway_username }}`
@@ -197,10 +187,10 @@ password: `{{ streisand_gateway_password.stdout }}`
 
 {% if streisand_tor_enabled %}
 <a name="connecting-tor"></a>
-### Service Caché Tor ###
-*Toutes les connexions aux services cachés Tor sont entièrement chiffrées.*
+### Tor Hidden Service ###
+*All connections to Tor hidden services are fully encrypted.*
 
-[{{ tor_hidden_service_url }}]({{ tor_hidden_service_url }}/index-fr.html)
+[{{ tor_hidden_service_url }}]({{ tor_hidden_service_url }})
 
 username: `{{ streisand_gateway_username }}`
 password: `{{ streisand_gateway_password.stdout }}`

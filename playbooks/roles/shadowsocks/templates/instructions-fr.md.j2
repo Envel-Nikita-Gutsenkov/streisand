@@ -4,7 +4,7 @@ Shadowsocks
 -----------
 
 ---
-* Plateformes
+* Platforms
   * [Windows](#windows)
   * [macOS](#macos)
   * [Linux](#linux)
@@ -19,119 +19,121 @@ Shadowsocks
 
 <a name="windows"></a>
 ### Windows ###
-1. Téléchargez [Shadowsocks pour Windows](/mirror/shadowsocks/index-fr.html).
-1. Extrayez l'archive et double-cliquez sur le fichier Shadowsocks.exe.
-1. Assurez-vous que le code QR ci-dessous est centré et complètement visible, cliquez avec le bouton droit de la souris sur l'icône de la barre d'état système de Shadowsocks, puis accédez à *Servers* > *Scan QRCode from Screen...*
+1. Download [Shadowsocks for Windows](/mirror/shadowsocks/).
+1. Extract the archive, and double-click on the Shadowsocks.exe file.
+1. Make sure the QR code below is centered and completely visible, right-click on the Shadowsocks system tray icon, and go to *Servers* > *Scan QRCode from Screen...*
 
    ![Shadowsocks QR code](/shadowsocks/shadowsocks-qr-code.png)
-1. Vous pouvez également aller à *Servers* > *New server* et procédez manuellement aux étapes suivantes:
-   1. Saisissez `{{ streisand_ipv4_address }}` pour le *Server IP*.
-   1. Saisissez `{{ shadowsocks_server_port }}` pour le *Server Port*.
-   1. Saisissez `{{ shadowsocks_password.stdout }}` pour le *Password*.
-   1. Le *SOCKS 5 Proxy Port* devrait être `{{ shadowsocks_local_port }}` et le *Encryption Method* devrait être `{{ shadowsocks_encryption_method }}`.
-   1. Assurez-vous que le support de l'authentification unique (OTA) est activé.
-   1. Cliquez *Save*.
-1. Cliquez sur l'icône de la barre de menus Shadowsocks et sélectionnez *Enable*.
-1. C'est tout! Vous pouvez vérifier que votre trafic est correctement routé par [recherche de votre adresse IP sur DuckDuckGo]({{ streisand_my_ip_url }}). Il devrait dire *Votre adresse IP publique est {{streisand_ipv4_address}}*.
+1. You may also go to *Servers* > *New server* and manually complete the following steps:
+   1. Enter `{{ streisand_ipv4_address }}` as the *Server IP*.
+   1. Enter `{{ shadowsocks_server_port }}` as the *Server Port*.
+   1. Enter `{{ shadowsocks_password.stdout }}` as the *Password*.
+   1. The *SOCKS 5 Proxy Port* should be `{{ shadowsocks_local_port }}` and the *Encryption Method* should be `{{ shadowsocks_encryption_method }}`.
+   1. Click *Save*.
+1. Click on the Shadowsocks menu tray icon and select *Enable*.
+1. That's it! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="macos"></a>
 ### macOS ###
-1. Téléchargez [ShadowsocksX-NG](/mirror/shadowsocks/index-fr.html).
-1. Double-cliquez sur le DMG et faites glisser l'icône dans votre dossier Applications.
-1. Lancez ShadowsocksX-NG. Vous serez invité à saisir votre mot de passe afin que vos paramètres de proxy système puissent être modifiés.
-1. Tapez sur l'icône du l'avion en papier rond dans la barre inférieure gauche.
-1. Assurez-vous que le code QR ci-dessous est centré et complètement visible, et choisissez *Scan QR Code from Screen...*
+1. Download [ShadowsocksX-NG](/mirror/shadowsocks/).
+1. Double-click the ZIP, and extract the application into your Applications folder.
+1. Launch ShadowsocksX-NG. You will be prompted to enter your password so that your system proxy settings can be modified.
+1. Look for the Shadowsocks paper plane icon in your menu bar and click on it.
+1. Make sure the QR code below is centered and completely visible, and choose *Scan QR Code from Screen...*
 
    ![Shadowsocks QR code](/shadowsocks/shadowsocks-qr-code.png)
-1. Vous pouvez également configurer la connexion en allant sur *Servers*, sélectionnant *Open Server Preferences...*, et en cliquant le bouton *+* sur la barre latérale:
-   1. Saisissez `{{ streisand_ipv4_address }}` et `{{ shadowsocks_server_port }}` dans le champ *Address*.
-   1. Assurez-vous que `{{ shadowsocks_encryption_method }}` est sélectionné pour la valeur *Encryption*.
-   1. Saisissez `{{ shadowsocks_password.stdout }}` pour le *Password*.
-   1. Chocher `Enable OTA`.
-   1. Cliquez *OK*.
-1. Cliquez à nouveau sur l'icône Shadowsocks dans la barre de menu, puis choisissez *Global Mode*.
-1. Vous pouvez utiliser l'icône Shadowsocks pour activer/désactiver le VPN. La couleur de l'icône changera en fonction de son activation ou pas.
-1. C'est tout! Vous pouvez vérifier que votre trafic est correctement routé par [recherche de votre adresse IP sur DuckDuckGo]({{ streisand_my_ip_url }}). Il devrait dire *Votre adresse IP publique est {{streisand_ipv4_address}}*.
+1. You may also configure the connection by going to *Servers*, selecting *Open Server Preferences...*, and clicking the *+* button on the sidebar:
+   1. Enter `{{ streisand_ipv4_address }}` and `{{ shadowsocks_server_port }}` in the *Address* fields.
+   1. Make sure `{{ shadowsocks_encryption_method }}` is selected for the *Encryption* value.
+   1. Enter `{{ shadowsocks_password.stdout }}` as the *Password*.
+   1. Click *OK*.
+1. Click on the Shadowsocks icon in the menu bar again, and choose *Global Mode*.
+1. You can use the Shadowsocks icon to enable/disable the VPN. The color of the icon will change based on whether or not it is active.
+1. That's it! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="linux"></a>
 ### Linux ###
-Téléchargez [shadowsocks2-linux-x64.gz](/mirror/shadowsocks/index-fr.html) et extrayez-le:
+Download [shadowsocks2-linux-x64.gz](/mirror/shadowsocks/) and extract it:
 
-   `gunzip shadowsocks2-linux-x64.gz`
+    `gunzip shadowsocks2-linux-x64.gz`
 
-Modifier le binaire qu'il soit exécutable
+Make the binary executable:
 
     `chmod +x shadowsocks2-linux-x64`
 
-Démarrez le proxy SOCKS shadowsocks:
+Start the shadowsocks SOCKS proxy:
 
     `./shadowsocks2-linux-x64 -c {{ streisand_ipv4_address }}:{{ shadowsocks_server_port }} -password "{{ shadowsocks_password.stdout }}" -socks localhost:{{ shadowsocks_local_port }} -verbose -cipher {{ shadowsocks_encryption_method }}`
 
-
-Pour référence, voici les informations de configuration dont vous aurez besoin:
+For reference, this is the configuration specified:
 
         Server: {{ streisand_ipv4_address }}
         Port: {{ shadowsocks_server_port }}
         Password: {{ shadowsocks_password.stdout }}
         Encryption Method: {{ shadowsocks_encryption_method }}
 
-Une fois que vous avez Shadowsocks fonctionnant localement, vous devrez transférer le trafic de votre navigateur via le proxy SOCKS qu'il fournit.
+Once you have Shadowsocks running locally, you'll need to forward your browser traffic through the SOCKS proxy it provides
 
-#### Configuration de Firefox pour se connecter via un proxy SOCKS ####
-1. Cliquez sur le bouton *Menu* à côté de l'icône *Accueil* à droite de la barre d'adresse.
-1. Cliquez *Préférences*.
-1. Cliquez l'icône *Avancé*.
-1. Allez à l'onglet *Réseau*.
-1. Cliquez le bouton *Paramètres* pour *Configurer la façon dont Firefox se connecte à Internet*.
-1. Choisissez *Configuration manuelle de proxy*.
-1. Saisissez `127.0.0.1` et port `{{ shadowsocks_local_port }}` pour la ligne *Hôte SOCKS*.
-1. Sélectionnez *Utiliser un DNS distant lorsque SOCKS v5 est actif*. Cela configure Firefox pour envoyer toutes les requêtes DNS via le proxy SOCKS. Cela vous protégera contre l'empoisonnement du DNS et vous garantira que les fausses entrées DNS ne peuvent pas être utilisées pour censurer votre accès.
-1. Cliquez *OK*.
-1. Cliquez *OK* encore pour fermer la fenêtre de paramètres de Firefox..
-1. C'est tout! Vous pouvez vérifier que votre trafic est correctement routé par [recherche de votre adresse IP sur DuckDuckGo]({{ streisand_my_ip_url }}). Il devrait dire *Votre adresse IP publique est {{ streisand_ipv4_address }}*.
+### Testing with Curl
+
+You can quickly test using curl:
+
+     `curl -I --socks5 localhost:1080 google.com`
+
+This should return a 301 Found response **not** a connection refused error.
+
+#### Configuring Firefox to connect through a SOCKS proxy ####
+1. Click the *Menu* button next to the *Home* icon to the right of the address bar.
+1. Click *Options*.
+1. Click the *Advanced* icon.
+1. Go to the *Network* tab.
+1. Click the *Settings* button to *Configure how Firefox connects to the Internet*.
+1. Choose *Manual proxy configuration*.
+1. Enter `127.0.0.1` and Port `{{ shadowsocks_local_port }}` on the *SOCKS Host* line.
+1. Select *Remote DNS*. This configures Firefox to send all DNS requests through the SOCKS proxy. This will protect you against DNS poisoning and ensure that false DNS entries cannot be used to censor your access.
+1. Click *OK*.
+1. Click *OK* again to close the Firefox preferences window.
+1. You should be good to go! You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
 
 
 <a name="android"></a>
 ### Android ###
-1. Téléchargez Shadowsocks pour Android à partir de [Google Play](https://play.google.com/store/apps/details?id=com.github.shadowsocks&hl=fr). Si Google Play est bloqué dans votre pays, vous pouvez [télécharger une copie en miroir](/mirror/shadowsocks/index-fr.html) de ce serveur!
-1. Lancez l'application.
-1. Tapez sur l'icône Ajouter un profil +, en haut à droite de l'écran.
-1. Tapez l'icône *+* en bas à droite.
-1. Sélectionnez *Scan QR code*.
-1. Utilisez votre téléphone pour numériser cette image, ou si vous utilisez votre téléphone _maintenant_, vous pouvez choisir la *Manual Settings* et copiez/collez les informations à partir de la section Linux ci-dessus:
+1. Download Shadowsocks for Android from [Google Play](https://play.google.com/store/apps/details?id=com.github.shadowsocks). If Google Play is blocked in your country, you can [download a mirrored copy](/mirror/shadowsocks/) from this server!
+1. Launch the application.
+1. Tap the Add Profile *+* icon, second from the top-right of the screen.
+1. Select *Scan QR code*.
+1. Use your phone to scan this image, or if you are using your phone _right now_ you can choose the *Manual Settings* option and copy and paste the information from the Linux section above:
 
    ![Shadowsocks QR code](/shadowsocks/shadowsocks-qr-code.png)
-1. Tapez sur l'icône de l'avion en haut.
-1. Acceptez l'avertissement de connexion VPN Android.
-1. Vous pouvez vérifier que votre trafic est correctement routé par [recherche de votre adresse IP sur DuckDuckGo]({{ streisand_my_ip_url }}). Il devrait dire *Votre adresse IP publique est {{streisand_ipv4_address}}*.
-
+1. Tap the round paper plane icon along the bottom-left bar.
+1. Accept the Android VPN connection warning.
+1. You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="ios"></a>
 ### iOS ###
-
-1. Téléchargez [Shadowrocket](https://itunes.apple.com/fr/app/shadowrocket/id932747118?mt=8) et lancez-le.
-   * Vous serez invité à vous connecter à l'iTunes Store la première fois que vous exécutez Shadowrocket.
-   > **Note:** Shadowrocket n'est pas disponible dans l'App Store chinois
-1. Appuyez sur l'icône d'importation du code QR en haut à gauche de l'écran.
-1. Utilisez votre téléphone pour numériser cette image, ou si vous utilisez votre téléphone _maintenant_, vous pouvez ajouter manuellement un nouveau proxy à partir de l'onglet *Home* et copier et coller les informations de la section Linux ci-dessus:
+1. Download [Shadowrocket](https://itunes.apple.com/us/app/shadowrocket/id932747118?mt=8) and launch it.
+   > **Note:** Shadowrocket is not available in the China App Store.
+1. Tap the QR code import icon in the top-left of the screen.
+1. Use your phone to scan this image, or if you are using your phone _right now_ you can manually add a new proxy by tapping *Add Server* and using the information from the Linux section above:
 
    ![Shadowsocks QR code](/shadowsocks/shadowsocks-qr-code.png)
-1. Mettez le commutateur de connexion situé à droite du texte *Not connected* sur l'onglet *Home*.
-   * Si c'est la première fois que vous utilisez Shadowrocket, iOS vous demandera de vérifier que l'application devrait avoir la permission d'ajouter des configurations VPN. Tapez *Permettre* et suivez les instructions.
-1. Vous pouvez vérifier que votre trafic est correctement routé par [recherche de votre adresse IP sur DuckDuckGo]({{ streisand_my_ip_url }}). Il devrait dire *Votre adresse IP publique est {{streisand_ipv4_address}}*.
+1. Toggle the connection switch located to the right of the *Not Connected* text on the *Home* tab.
+   * If this is your first time running Shadowrocket, iOS will ask you to verify that the application should have permission to add VPN configurations. Tap *Allow* and follow the instructions.
+1. You can verify that your traffic is being routed properly by [looking up your IP address on DuckDuckGo]({{ streisand_my_ip_url }}). It should say *Your public IP address is {{ streisand_ipv4_address }}*.
 
 {%- if streisand_shadowsocks_v2ray_enabled -%}
 
 <a name="V2ray-plugin"></a>
-### v2ray-plugin pour les réseaux peu fiables/hostiles ###
-Pour les utilisateurs sur des réseaux peu fiables ou hostiles (en particulier la limitation de la qualité de service (QOS)), l'utilisation du plugin simple-obfs peut vous aider à atténuer ces problèmes. La configuration supplémentaire du client Shadowsocks pour utiliser le plugin v2ray-plugin peut être effectuée via la configuration suivante:
+### v2ray-plugin for unreliable/hostile networks ###
+For users on unreliable or hostile networks (esp. experiencing quality-of-service (QOS) throttling) using the [v2ray-plugin](https://github.com/shadowsocks/v2ray-plugin) may help alleviate these issues. Further configuration of the Shadowsocks client to use the v2ray-plugin can be carried out via the following configuration:
 
         Server: {{ streisand_ipv4_address }}
         Port: {{ shadowsocks_server_port }}
         Password: {{ shadowsocks_password.stdout }}
         Encryption Method: {{ shadowsocks_encryption_method }}
         Plugin: {{ shadowsocks_v2ray_plugin }}
-        Plugin_Options: {{  shadowsocks_v2ray_plugin_options }}
-Les utilisateurs d'Android devront d'abord télécharger l'application [V2ray-plugin](https://play.google.com/store/apps/details?id=com.github.shadowsocks.plugin.v2ray), puis modifier le profil existant de Streisand sur votre client pour utiliser ce plugin. Vous pouvez le faire en appuyant sur le bouton d'édition (edit) à côté du profil, en tapant l'option Plugin en bas du profil et en sélectionnant le plugin "V2ray-plugin" dans le menu. Votre trafic Shadowsocks sera maintenant obscurci en tant que {{ shadowsocks_v2ray_plugin_protocol }} trafic vers `{{ shadowsocks_v2ray_cover_domain }}`.
+        Plugin_Options: {{ shadowsocks_v2ray_plugin_options }}
+
+Android users will first need to download the [V2ray-plugin](https://play.google.com/store/apps/details?id=com.github.shadowsocks.plugin.v2ray) plugin app, and then modify the existing Streisand profile on your client to use this plugin. You can do this by hitting the edit button next to the profile, tapping the `Plugin` option at the bottom of the profile and selecting the "V2ray-plugin" plugin from the menu. Your Shadowsocks traffic will now be obfuscated as `{{ shadowsocks_v2ray_plugin_protocol }}` traffic to `{{ shadowsocks_v2ray_cover_domain }}`.
 
 {% endif %}
