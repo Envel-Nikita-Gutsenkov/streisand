@@ -6,7 +6,7 @@ OpenVPN
 Если соединения OpenVPN блокируются в вашей стране, попробуйте использовать [OpenVPN (stunnel)](/openvpn/stunnel.html) инструкции, которые помогут обернуть ваш OpenVPN-трафик в зашифрованный туннель, чтобы он выглядел как стандартный трафик TLS.
 {% endif %}
 #### Примечание о файлах конфигурации ####
-По соображениям безопасности этот OpenVPN был настроен так, чтобы разрешать только одно клиентское соединение на каждый файл. Попытка повторно использовать клиентские сертификаты приведет к отключению существующего клиентского сеанса. Т.е. для каждого устройства используйте разные файлы.
+По соображениям безопасности этот OpenVPN был настроен так, чтобы разрешать только одно клиентское соединение на каждый файл. Попытка повторно использовать клиентские сертификаты приведет к отключению существующего клиентского сеанса. Т.е. для каждого устройства используйте разные файлы конфигурации.
 
 ---
 * Platforms
@@ -67,7 +67,7 @@ OpenVPN
 ### Linux ###
 1. Установите OpenVPN:
 
-   `sudo apt-get install openvpn` OR `sudo yum install openvpn` OR `esoteric-package-manager hipster openvpn`
+   `sudo apt-get install openvpn` или `sudo yum install openvpn` или `esoteric-package-manager hipster openvpn`
 
    * Если установка OpenVPN через диспетчер пакетов невозможна, вы также можете загрузить и скомпилировать [исходный код OpenVPN](/mirror/#openvpn).
 1. Загрузите один из файлов конфигурации (профилей) OpenVPN:
@@ -253,19 +253,19 @@ It's preferable to configure Ubuntu using the OpenVPN plugin for NetworkManager.
 1. Готово! Можно проверить [ваш IP адрес в DuckDuckGo]({{ streisand_my_ip_url }}). Должно быть написано *Your public IP address is {{ streisand_ipv4_address }}*.
 
 <a name="sslh-profiles"></a>
-### Alternate unified profiles for access via port 443 ###
+### Альтернативные профили доступны, если вы находитесь в сети, которая разрешает доступ только к порту 443 ###
 {% for client in vpn_client_names.results %}
 * [{{ client.stdout }}](/openvpn/{{ client.stdout }}/{{ openvpn_sslh_profile_filename }})
 {% endfor %}
 
 <a name="udp-profiles"></a>
-### Alternate unified profiles for access via UDP port {{ openvpn_port_udp }} ###
+### Альтернативные UDP профили через порт {{ openvpn_port_udp }} ###
 {% for client in vpn_client_names.results %}
 * [{{ client.stdout }}](/openvpn/{{ client.stdout }}/{{ openvpn_direct_udp_profile_filename }})
 {% endfor %}
 
 <a name="combined-profiles"></a>
-### Alternate profile that will cycle through UDP port {{ openvpn_port_udp }}, TCP port {{ openvpn_port }}, and TCP port {{ openvpn_port_sslh }} ###
+### Альтернативные комбинированные профили, которые будут циклически проходить через UDP порт {{ openvpn_port_udp }}, TCP порт {{ openvpn_port }}, и TCP порт {{ openvpn_port_sslh }} ###
 {% for client in vpn_client_names.results %}
 * [{{ client.stdout }}](/openvpn/{{ client.stdout }}/{{ openvpn_combined_profile_filename }})
 {% endfor %}
