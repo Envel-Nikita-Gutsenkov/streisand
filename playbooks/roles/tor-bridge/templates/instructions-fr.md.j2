@@ -1,74 +1,74 @@
 {% include "languages.md.j2" %}
 
-Tor Bridge
+Мост Tor
 ----------
 
 ---
-* Platforms
-  * [Desktops](#desktops)
+* Платформы
+  * [Компьютеры](#desktops)
   * [Android](#android)
   * [iOS](#ios)
 
 <a name="desktops"></a>
-### Desktops ###
-1. Download the [Tor Browser Bundle](/mirror/tor/) for your platform of choice. The Obfsproxy obfs4 pluggable transport that it includes will let you use the Tor network even if your ISP is actively performing Deep Packet Inspection in an attempt to block all Tor traffic.
-1. Launch the Tor Browser Bundle.
-1. Click the *Configure* button underneath the text that says *I need to configure bridge, firewall, or proxy settings*.
-1. Answer *Yes* to *Does your Internet Service Provider (ISP) block or otherwise censor connections to the Tor Network?*
-1. Choose the *Enter custom bridges* option, and paste the following information into the text box:
+### Компьютеры ###
+1. Скачайте [Tor Browser Bundle](/mirror/tor/) для своей платформы. Подключаемый транспорт трафика Obfsproxy obfs4, который он включает, позволит вам использовать сеть Tor, даже если ваш интернет-провайдер активно использует DPI, пытаясь заблокировать весь трафик Tor.
+1. Запустите Tor Browser Bundle.
+1. Нажмите кнопку *Configure* (*Настроить*) под текстом, в котором говорится, что *I need to configure bridge, firewall, or proxy settings* (*Мне нужно настроить параметры моста, брандмауэра или прокси*).
+1. Ответьте *Yes* (*Да*) на вопрос *Does your Internet Service Provider (ISP) block or otherwise censor connections to the Tor Network?* (*Блокирует ли ваш интернет-провайдер (ISP) или иным образом подвергает цензуре подключения к сети Tor?*).
+1. Выберите параметр *Enter custom bridges* (*Ввести настраиваемые мосты*) и вставьте следующую информацию в текстовое поле:
 
          {{ tor_obfs4_bridge_line }}
-1. Answer the Local Proxy Configuration question. In most cases the answer will be *No*.
-1. Click *Connect*.
+1. Ответьте на вопрос о конфигурации локального прокси. В большинстве случаев ответ будет *No* (*Нет*).
+1. Нажмите *Connect* (*Подключить*).
 
-You are ready to go! Tor has connected to the *{{ tor_bridge_nickname.stdout }}* bridge server, and your encrypted Tor traffic is completely obscured by obfsproxy so it doesn't look like Tor traffic at all!
+Вы готовы к работе! Tor подключился к серверу *{{ tor_bridge_nickname.stdout }}* и ваш зашифрованный трафик Tor полностью скрыт obfsproxy, поэтому он совсем не похож на трафик Tor!
 
 <a name="android"></a>
 ### Android ###
-1. Download [Orbot](https://play.google.com/store/apps/details?id=org.torproject.android) and launch it.
-1. Tap the *Menu* button.
-1. Tap *QR Codes*.
-1. Tap *Scan BridgeQR*.
-1. Scan the following QR code. This will automatically configure Orbot to connect to this server using the obfs4 pluggable transport:
+#### Настройка через QR код Orbot (для всех приложений, поддерживающих прокси) ####
+1. Скачайте [Orbot](https://play.google.com/store/apps/details?id=org.torproject.android) и [Barcode Scanner](https://play.google.com/store/apps/details?id=com.google.zxing.client.android), запустите Orbot.
+1. Нажмите кнопку Меню ( ⋮ ).
+1. Нажмите *QR Codes* (*QR коды*).
+1. Нажмите *Scan BridgeQR* (*Сканировать BridgeQR*).
+1. Отсканируйте следующий QR-код. Это автоматически настроит Orbot для подключения к этому серверу с помощью подключаемого транспорта obfs4:
 
    ![Tor obfs4 QR code](/tor/tor-obfs4-qr-code.png)
-1. You must restart Orbot in order for the changes to take effect. Tap the *Menu* button, select *Exit*, and launch Orbot again.
-1. Long press on the power button to activate Orbot.
+1. Вы должны перезапустить Orbot, чтобы изменения вступили в силу. Нажмите кнопку *Menu* (*Меню*), выберите *Exit* (*Выйти*), запустите Orbot снова.
+1. Нажмите кнопку *START* (*СТАРТ*) для запуска Orbot.
 
-Great! Orbot has connected to the *{{ tor_bridge_nickname.stdout }}* bridge server!
+#### Настройка через ручной ввод данных Orbot (для всех приложений, поддерживающих прокси) ####
+1. Скачайте [Orbot](https://play.google.com/store/apps/details?id=org.torproject.android) и запустите.
+1. Нажмите кнопку Меню ( ⋮ ).
+1. Нажмите *Settings* (*Настройки*).
+1. Найдите пупкт *Bridges* (*Мосты*), нажмите и вставьте следующую информацию в текстовое поле.
 
-You are now ready to configure Twitter and Firefox to route their traffic through Orbot.
+         {{ tor_obfs4_bridge_line }}
+1. Нажмите ОК.
+1. Вы должны перезапустить Orbot, чтобы изменения вступили в силу. Выйдите из настроек в главное меню (действие "назад"). Нажмите кнопку *Menu* (*Меню*), выберите *Exit* (*Выйти*), запустите Orbot снова.
+1. Нажмите кнопку *START* (*СТАРТ*) для запуска Orbot.
+1. В поле *Tor-Enabled Apps* нажмите на значок настройки ( ⚙ ) и выберите приложения, которые должны использовать прокси Orbot.
 
-#### Configuring Twitter for Android to use Orbot ####
-1. Open Twitter.
-1. Tap the three dots in the upper-right of the screen to open the menu.
-1. Choose *Settings*.
-1. Tap *General*.
-1. Tap *Proxy*.
-1. Check the *Enable HTTP Proxy* checkbox.
-1. Tap *Proxy Host* and enter `127.0.0.1`.
-1. Tap *Proxy Port* and enter `8118`.
+#### Настройка моста в браузере TOR ####
+1. Скачайте [Tor Browser](https://play.google.com/store/apps/details?id=org.torproject.torbrowser) и запустите.
+1. Нажмите на кнопку настройки в верхнем правом углу ( ⚙ ).
+1. Включите переключатель *Internet is censored here* (*Интернет здесь подвергается цензуре*).
+1. Нажмите на фиолетовое слово *Change* (*Изменить*)
+1. Откроется интерфейс ввода информации о мосте с 3 строками. Введите в первую строку следующие данные:
 
-#### Configuring Firefox for Android to use Orbot ####
-1. Open Firefox.
-1. Type `about:config` into the address bar and tap the *Go* button on your keyboard.
-1. Type `proxy` into the search box.
-1. Set the value of *network.proxy.socks* to `127.0.0.1`.
-1. Set the value of *network.proxy.socks_port* to `9050`.
-1. Set the value of *network.proxy.socks\_remote\_dns* to `true`.
-1. Set the value of *network.proxy.type* to `1`.
+         {{ tor_obfs4_bridge_line }}
+1. Теперь выйдите в главное меню и нажмите *Connect* (*Подключить*). Если вы успешно подключаетесь, значит мост *{{ tor_bridge_nickname.stdout }}* работает верно.
 
 <a name="ios"></a>
 ### iOS ###
-1. Download [Onion Browser](https://itunes.apple.com/us/app/onion-browser/id519296448?mt=8) and launch it.
-1. Tap the menu button on the bottom of the screen and choose *Browser Settings*.
-1. Scroll to the bottom and tap *Configure Bridges*
-1. Tap *Enter Custom Bridges*.
-1. Tap the camera icon in the lower-right corner. You may need to enable camera access for Onion Browser in your iOS Settings.
-1. Scan the following QR code. This will automatically configure Onion Browser to connect to this server using the obfs4 pluggable transport:
+1. Скачайте [Onion Browser](https://itunes.apple.com/us/app/onion-browser/id519296448?mt=8) и запустите его.
+1. Нажмите кнопку меню в нижней части экрана и выберите *Browser Settings* (*Настройки браузера*).
+1. Прокрутите вниз и коснитесь *Configure Bridges* (*Настроить мосты*).
+1. Нажмите *Enter Custom Bridges* (*Ввести пользовательские мосты*).
+1. Коснитесь значка камеры в правом нижнем углу. Возможно, вам потребуется включить доступ к камере для браузера Onion в настройках iOS.
+1. Отсканируйте следующий QR-код. Это автоматически настроит Onion Browser для подключения к этому серверу с помощью подключаемого транспорта obfs4:
 
    ![Tor obfs4 QR code](/tor/tor-obfs4-qr-code.png)
-1. Tap *OK* when the confirmation is displayed.
-1. Tap *Save*.
-1. Tap *Restart app*.
-1. Relaunch the application. If you successfully connect, the *{{ tor_bridge_nickname.stdout }}* bridge is working correctly, and your connection is obscured by the obfs4 pluggable transport so it doesn't look like Tor traffic at all!
+1. Нажмите *OK*, когда отобразится подтверждение.
+1. Коснитесь *Save* (*Сохранить*).
+1. Нажмите *Restart app* (*Перезапустить приложение*).
+1. Запустите приложение заново. Если вы успешно подключаетесь, значит мост *{{ tor_bridge_nickname.stdout }}* работает верно.
