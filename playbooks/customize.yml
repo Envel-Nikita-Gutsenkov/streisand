@@ -9,8 +9,8 @@
       default: "~/.ssh/id_rsa"
       private: no
     - name: vpn_clients
-      prompt: "How many VPN client profiles should be generated per-service (min: 1 max: 20)? Press enter for default "
-      default: 20
+      prompt: "How many VPN client profiles should be generated per-service (min: 1 max: 40)? Press enter for default "
+      default: 40
       private: no
     - name: streisand_ad_blocking_enabled
       prompt: "Enable DNS-based ad-blocking? Press enter for default "

@@ -57,7 +57,7 @@ function validate() {
   if [ -z "${NEW_SERVER_PROVISIONING}" ]; then
     NEW_SERVER_PROVISIONING=true
   fi
-  
+
   echo; echo; ansible-playbook \
     --extra-vars="@$GLOBAL_VARS" \
     --extra-vars="@$DEFAULT_SITE_VARS" \
@@ -104,18 +104,18 @@ function run_genesis() {
   # Customize the Streisand services that will be installed
   customize
   # Ensure that the customization hasn't resulted in something inconsistent
-  # NEW_SERVER_PROVISIONING can be False or True (0 or 1), tests if we need 
+  # NEW_SERVER_PROVISIONING can be False or True (0 or 1), tests if we need
   # to check existence of SSH public key
   if [ "$GENESIS_PLAYBOOK" != "existing-server.yml" ] && [ "$GENESIS_PLAYBOOK" != "localhost.yml" ]; then
     validate true
   else
     validate false
   fi
-  
+
   if [ -n "${SSH_USER}" ] && [ "$SSH_USER" != "root" ]; then
     ASK_BECOME="--ask-become-pass"
   fi
-  
+
   # Run the specified genesis playbook with the specified Ansible inventory
   echo; echo; ansible-playbook \
     -i $GENESIS_INVENTORY \
@@ -209,7 +209,7 @@ case "$reply" in
   4) run_genesis google.yml;;
   5) run_genesis linode.yml;;
   6) run_genesis rackspace.yml;;
-  7) local_provision;;
+  7) run_genesis localhost.yml;;
   8) existing_server;;
   *) echo; echo "Invalid provider selected."; exit 1;;
 esac
