@@ -209,7 +209,7 @@ case "$reply" in
   4) run_genesis google.yml;;
   5) run_genesis linode.yml;;
   6) run_genesis rackspace.yml;;
-  7) run_genesis localhost.yml;;
+  7) local_provision;;
   8) existing_server;;
   *) echo; echo "Invalid provider selected."; exit 1;;
 esac
